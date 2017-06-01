@@ -30,7 +30,8 @@ public class Sim2 {
     public void startPage(){
         start = new JPanel(new FlowLayout());
         JLabel intro = new JLabel("Flood", JLabel.CENTER);
-        JButton startButton = new JButton("Select Level: ");
+        JButton startButton = new JButton("Start");
+
         startButton.setActionCommand("start"); //set action command
         startButton.addActionListener(new ButtonClickListener());
         startButton.setPreferredSize(new Dimension(75, 30));
@@ -99,6 +100,8 @@ public class Sim2 {
         level1.add(timeDisplay);
         timer.start();
         mainFrame.setVisible(true);
+        TriviaQuestion test = new TriviaQuestion("this is a test", "true");
+        test.displayQuestion();
     }
 
      public void level2Page() {
