@@ -1,11 +1,19 @@
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import java.time.*;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 
 public class Sim2 {
     private JFrame mainFrame;
     private JPanel start, levels, level1, level2, level3, level4, level5, level6, level7, level8, level9;
-
+    JLabel timeDisplay;
+    private Timer timer;
+    private long lastTickTime, time;
+    
     public static void main(String[] args) {
         Sim2 simulation = new Sim2();
     }
@@ -16,6 +24,7 @@ public class Sim2 {
         mainFrame.setLocationRelativeTo(null);
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         startPage();
+        
     }
 
     public void startPage(){
@@ -87,6 +96,8 @@ public class Sim2 {
         mainFrame.add(level1);
         level1.add(back);
         level1.add(level1Header);
+        level1.add(timeDisplay);
+        timer.start();
         mainFrame.setVisible(true);
     }
 
@@ -101,6 +112,8 @@ public class Sim2 {
         mainFrame.add(level2);
         level2.add(back);
         level2.add(level2Header);
+        level2.add(timeDisplay);
+        timer.start();
         mainFrame.setVisible(true);
     }
 
@@ -115,6 +128,8 @@ public class Sim2 {
         mainFrame.add(level3);
         level3.add(back);
         level3.add(level3Header);
+        level3.add(timeDisplay);
+        timer.start();
         mainFrame.setVisible(true);
     }
 
@@ -129,6 +144,8 @@ public class Sim2 {
         mainFrame.add(level4);
         level4.add(back);
         level4.add(level4Header);
+        level4.add(timeDisplay);
+        timer.start();
         mainFrame.setVisible(true);
     }
 
@@ -143,6 +160,8 @@ public class Sim2 {
         mainFrame.add(level5);
         level5.add(back);
         level5.add(level5Header);
+        level5.add(timeDisplay);
+        timer.start();
         mainFrame.setVisible(true);
     }
 
@@ -157,6 +176,8 @@ public class Sim2 {
         mainFrame.add(level6);
         level6.add(back);
         level6.add(level6Header);
+        level6.add(timeDisplay);
+        timer.start();
         mainFrame.setVisible(true);
     }
 
@@ -171,6 +192,8 @@ public class Sim2 {
         mainFrame.add(level7);
         level7.add(back);
         level7.add(level7Header);
+        level7.add(timeDisplay);
+        timer.start();
         mainFrame.setVisible(true);
     }
 
@@ -185,6 +208,8 @@ public class Sim2 {
         mainFrame.add(level8);
         level8.add(back);
         level8.add(level8Header);
+        level8.add(timeDisplay);
+        timer.start();
         mainFrame.setVisible(true);
     }
 
@@ -199,12 +224,30 @@ public class Sim2 {
         mainFrame.add(level9);
         level9.add(back);
         level9.add(level9Header);
+        level9.add(timeDisplay);
+        timer.start();
         mainFrame.setVisible(true);
     }
 
     private class ButtonClickListener implements ActionListener{
         public void actionPerformed(ActionEvent e){
             String command = e.getActionCommand();
+            timeDisplay = new JLabel(String.format("%04d:%02d:%02d.%03d", 0, 0, 0, 0));
+            String dt = "Wednesday, 31 May 2017";  // Start date
+            SimpleDateFormat sdf = new SimpleDateFormat("EEE, d MMM yyyy");
+            Calendar cal = Calendar.getInstance();
+            cal.add(Calendar.DATE, 1);  // number of days to add
+            dt = sdf.format(cal.getTime());
+            timeDisplay.setText(sdf.format(cal.getTime()));
+            timer = new Timer(1000, new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    cal.add(Calendar.DATE, 1);
+                    timeDisplay.setText(sdf.format(cal.getTime()) /*String.format("%04d:%02d:%02d.%03d", hours, minutes, seconds, millis)*/);
+                    
+                }
+            });
+
             if (command.equals("start")){
                 levelsPage();
             }
@@ -271,7 +314,6 @@ public class Sim2 {
                 mainFrame.remove(level9);
                 levelsPage();
             }
-        }   
+        }              
     }
-
 }
