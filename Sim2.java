@@ -12,7 +12,6 @@ public class Sim2 {
     private JPanel start, levels, level1, level2, level3, level4, level5, level6, level7, level8, level9;
     JLabel timeDisplay;
     private Timer timer;
-    private long lastTickTime, time;
     
     public static void main(String[] args) {
         Sim2 simulation = new Sim2();
@@ -246,7 +245,6 @@ public class Sim2 {
                 public void actionPerformed(ActionEvent e) {
                     cal.add(Calendar.DATE, 1);
                     timeDisplay.setText(sdf.format(cal.getTime()));
-                    
                 }
             });
 

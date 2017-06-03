@@ -17,7 +17,6 @@ public class Page{ //superclass for all the pages
 		backButton = new JButton("Back");
 		backButton.setActionCommand("back");
 		backButton.addActionListener(new ButtonClickListener());
-
 	}
 
 	public void display(){
