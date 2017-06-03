@@ -7,11 +7,19 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class Start {
-	public JButton startButton
+	public JPanel panel;
+	public JButton startButton;
+	public JLabel intro;
+
 	public Start(){
-		startButton = new JButton("Start");
-        startButton.setActionCommand("start");
-        startButton.addActionListener(new ButtonClickListener());
+        panel = new JPanel(new FlowLayout());
+        intro = new JLabel("Flood", JLabel.CENTER);
+        startButton = new JButton("Start");
+        startButton.setActionCommand("start"); //set action command
+        //startButton.addActionListener(new ButtonClickListener());
         startButton.setPreferredSize(new Dimension(75, 30));
+        //mainFrame.add(start);
+        panel.add(intro);
+        panel.add(startButton);
 	}
 }

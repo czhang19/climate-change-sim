@@ -31,14 +31,12 @@ public class Sim2 {
         start = new JPanel(new FlowLayout());
         JLabel intro = new JLabel("Flood", JLabel.CENTER);
         JButton startButton = new JButton("Start");
-
         startButton.setActionCommand("start"); //set action command
         startButton.addActionListener(new ButtonClickListener());
         startButton.setPreferredSize(new Dimension(75, 30));
-        //mainFrame.add(start);
+        mainFrame.add(start);
         start.add(intro);
         start.add(startButton);
-        mainFrame.add(start);
         mainFrame.setVisible(true);
     }
 
@@ -237,7 +235,7 @@ public class Sim2 {
         public void actionPerformed(ActionEvent e){
             String command = e.getActionCommand();
             timeDisplay = new JLabel();
-            String dt = "Wednesday, 31 May 2017";  // Start date
+            String dt = new SimpleDateFormat("EEE, d MMM yyyy").format(new Date()); // starts date as today
             SimpleDateFormat sdf = new SimpleDateFormat("EEE, d MMM yyyy");
             Calendar cal = Calendar.getInstance();
             cal.add(Calendar.DATE, 1);  // number of days to add
@@ -247,7 +245,7 @@ public class Sim2 {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     cal.add(Calendar.DATE, 1);
-                    timeDisplay.setText(sdf.format(cal.getTime()) /*String.format("%04d:%02d:%02d.%03d", hours, minutes, seconds, millis)*/);
+                    timeDisplay.setText(sdf.format(cal.getTime()));
                     
                 }
             });
@@ -320,7 +318,5 @@ public class Sim2 {
             }
         }              
     }
-    public void waterRising(){
-        
-    }
 }
+

@@ -18,13 +18,23 @@ public class Page{ //superclass for all the pages
 		panel = new JPanel(new GridLayout(4, 4));	
 		backButton = new JButton("Back");
 		backButton.setActionCommand("back");
-		backButton.addActionListener(new ButtonClickListener());
+		//backButton.addActionListener(new ButtonClickListener());
 		backButton.setPreferredSize(new Dimension(75, 30));
 		timeDisplay = new JLabel();
-		panel.add(header);
+		//panel.add(header);
 		panel.add(backButton);
-		//panel.add(timeDisplay);
+		panel.add(timeDisplay);
 	}
 
+	public void setHeader(int number){
+		header = new JLabel("level " + number);
+		panel.add(header);
+	}
 	
+	public class ButtonClickListener implements ActionListener{
+		public void actionPerformed(ActionEvent e){
+        	String command = e.getActionCommand();
+        	
+		}
+	}	
 }
