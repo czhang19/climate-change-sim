@@ -264,7 +264,7 @@ public class Sim2 {
             }
             else if (command.equals("back1")){
                 mainFrame.remove(level1);
-                levelsPage();
+                //levelsPage();
             }
             else if (command.equals("back2")){
                 mainFrame.remove(level2);

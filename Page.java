@@ -3,8 +3,10 @@ import java.awt.event.*;
 import javax.swing.*;
 import java.time.*;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+
 
 public class Page{ //superclass for all the pages
 	public JButton backButton;
@@ -12,6 +14,7 @@ public class Page{ //superclass for all the pages
 	public JLabel header;
 	public Timer timer;
 	public JLabel timeDisplay;
+	public ArrayList<TriviaQuestion> bank;
 
 	
 	public Page(){
@@ -30,6 +33,8 @@ public class Page{ //superclass for all the pages
 		header = new JLabel("level " + number);
 		panel.add(header);
 	}
+
+
 	
 	public class ButtonClickListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
@@ -37,4 +42,6 @@ public class Page{ //superclass for all the pages
         	
 		}
 	}	
+
+
 }

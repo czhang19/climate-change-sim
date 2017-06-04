@@ -5,6 +5,7 @@ import java.time.*;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.ArrayList;
 
 public class Control{ //to navigate between pages
 	public JFrame mainFrame;
@@ -20,6 +21,7 @@ public class Control{ //to navigate between pages
 	public Page level8;
 	public Page level9;
 	public Page tracker;
+	public ArrayList<TriviaQuestion> qbank;
 
 
     public Control() {
@@ -81,29 +83,16 @@ public class Control{ //to navigate between pages
     }
 
     public void display(Page page){
-        String dt = new SimpleDateFormat("EEE, d MMM yyyy").format(new Date()); // starts date as today
-        SimpleDateFormat sdf = new SimpleDateFormat("EEE, d MMM yyyy");
-        Calendar cal = Calendar.getInstance();
-        cal.add(Calendar.DATE, 1);  // number of days to add
-        dt = sdf.format(cal.getTime());
-        page.timeDisplay.setText(sdf.format(cal.getTime()));
-       	page.timer = new Timer(1000, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                cal.add(Calendar.DATE, 1);
-                page.timeDisplay.setText(sdf.format(cal.getTime()) /*String.format("%04d:%02d:%02d.%03d", hours, minutes, seconds, millis)*/);
-                
-            }
-        });
+       	//page.timer.start();
         page.panel.add(page.timeDisplay);
         mainFrame.add(page.panel);
         mainFrame.setVisible(true);
-
+        page.bank = qbank;
     }
 
 
     public void remove(Page page){
-    	mainFrame.remove(page.panel);
+    	mainFrame.getContentPane().remove(page.panel);
     }
 
     public void remove(Start start){
@@ -168,7 +157,8 @@ public class Control{ //to navigate between pages
                 tracker = level9;
             }
             else if (command.equals("back")){
-                remove(tracker);
+                //remove(tracker);
+                mainFrame.remove(level1.panel);
                 display(home);
             }
         }              

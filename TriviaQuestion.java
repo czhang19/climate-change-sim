@@ -14,7 +14,7 @@ public class TriviaQuestion{
 
 	public TriviaQuestion(String question, String answer){
 		this.question = question;
-		this.answer = answer.equals("true");
+		this.answer = answer.equals("T");
 	}
 
 	public void displayQuestion(){
@@ -22,7 +22,7 @@ public class TriviaQuestion{
 		qFrame.setLocationRelativeTo(null);
 		qFrame.setSize(400, 300);
 		qPanel = new JPanel(new FlowLayout());
-		qLabel = new JLabel(question);
+		//qLabel = new JLabel(question);
 		JButton trueButton = new JButton("True");
 		trueButton.setActionCommand("true");
 		trueButton.addActionListener(new ButtonClick());		
