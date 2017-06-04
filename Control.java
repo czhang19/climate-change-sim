@@ -92,7 +92,9 @@ public class Control{ //to navigate between pages
     }
 
     public void display(Home home){
-    	mainFrame.add(home.panel);
+        mainFrame.add(home.panel);
+        home.panel.revalidate();
+        home.panel.repaint();
     	mainFrame.setVisible(true);
     }
 
