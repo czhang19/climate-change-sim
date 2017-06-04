@@ -1,3 +1,4 @@
+import java.io.*;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -5,6 +6,8 @@ import java.time.*;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Control{ //to navigate between pages
 	public JFrame mainFrame;
@@ -20,9 +23,10 @@ public class Control{ //to navigate between pages
 	public Page level8;
 	public Page level9;
 	public Page tracker;
+    public ArrayList<TriviaQuestion> qbank;
 
-
-    public Control() {
+    public Control() 
+            throws FileNotFoundException {
         mainFrame = new JFrame("Flood");
         mainFrame.setSize(1000, 750);
         mainFrame.setLocationRelativeTo(null);
@@ -40,7 +44,6 @@ public class Control{ //to navigate between pages
     	home.level7Button.addActionListener(new ButtonClickListener());
     	home.level8Button.addActionListener(new ButtonClickListener());
     	home.level9Button.addActionListener(new ButtonClickListener());
-
         level1 = new Page1();
         level2 = new Page2();
        	level3 = new Page3();
@@ -59,13 +62,24 @@ public class Control{ //to navigate between pages
        	level7.backButton.addActionListener(new ButtonClickListener());
        	level8.backButton.addActionListener(new ButtonClickListener());
        	level9.backButton.addActionListener(new ButtonClickListener());
-
-
        	mainFrame.setVisible(true);
-
+    
+        File f = new File("TriviaBank.txt");
+        Scanner input = new Scanner(f);
+        input.useDelimiter("\\s*=\\s*");
+        qbank = new ArrayList<TriviaQuestion>();
+        String question = "";
+        String answer = "";
+        while (input.hasNextLine()) {
+            question = input.next();
+            answer = input.next();
+            qbank.add(new TriviaQuestion(question, answer));
+        }
+        input.close();
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) 
+            throws FileNotFoundException {
     	Control game = new Control();
     	
     }
@@ -81,29 +95,19 @@ public class Control{ //to navigate between pages
     }
 
     public void display(Page page){
-        String dt = new SimpleDateFormat("EEE, d MMM yyyy").format(new Date()); // starts date as today
-        SimpleDateFormat sdf = new SimpleDateFormat("EEE, d MMM yyyy");
-        Calendar cal = Calendar.getInstance();
-        cal.add(Calendar.DATE, 1);  // number of days to add
-        dt = sdf.format(cal.getTime());
-        page.timeDisplay.setText(sdf.format(cal.getTime()));
-       	page.timer = new Timer(1000, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                cal.add(Calendar.DATE, 1);
-                page.timeDisplay.setText(sdf.format(cal.getTime()) /*String.format("%04d:%02d:%02d.%03d", hours, minutes, seconds, millis)*/);
-                
-            }
-        });
+        page.timer.start();
         page.panel.add(page.timeDisplay);
         mainFrame.add(page.panel);
         mainFrame.setVisible(true);
-
+        page.bank = qbank;
+        page.qtimer.start();
     }
 
 
     public void remove(Page page){
     	mainFrame.remove(page.panel);
+        page.timer.stop();
+        page.qtimer.stop();
     }
 
     public void remove(Start start){

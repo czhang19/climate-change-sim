@@ -14,7 +14,7 @@ public class TriviaQuestion{
 
 	public TriviaQuestion(String question, String answer){
 		this.question = question;
-		this.answer = answer.equals("true");
+		this.answer = answer.equals("T");
 	}
 
 	public void displayQuestion(){
