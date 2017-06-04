@@ -9,6 +9,7 @@ import java.util.Date;
 public class Page5 extends Page {
     public Page5() {
         super();
+        setHeader(5);
     }
     
     public void level5Page() {
