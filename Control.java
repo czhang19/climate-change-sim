@@ -104,7 +104,9 @@ public class Control{ //to navigate between pages
 
     public void remove(Page page){
         page.closeTrivia();
+        page.closeInfo();
         page.resetWater();
+        page.resetCounter();
         page.win.setText("<html><body style='width: 750px'>");
     	mainFrame.remove(page.panel);
     }

@@ -11,6 +11,7 @@ public class Page2 extends Page {
         super();
         super.addImage("putinnnnn.jpg");
         setHeader("2: President Vladimir Putin");
+        waterInterval = 15;
         panel.add(win);
         win.setText("<html><body style='width: 750px'>");
     }
