@@ -17,9 +17,21 @@ public class Page{ //superclass for all the pages
     public Timer qtimer;
 	public JLabel timeDisplay;
     public ArrayList<TriviaQuestion> bank;
+    public JButton co2;
 	
 	public Page(){
-		panel = new JPanel(new GridLayout(4, 4));	
+		panel = new JPanel(){
+            @Override
+            public void paintComponent(Graphics g){
+                super.paintComponent(g);
+                Graphics2D g2 = (Graphics2D)g;
+                g2.setColor(new Color(25, 150, 200));
+                g2.fillRect(0, 500, 1000, 750);
+            }
+        };
+        co2 = new JButton("CO2");
+        waterLevel();
+        panel.setLayout(new GridLayout(4,4));
 		backButton = new JButton("Back");
 		backButton.setActionCommand("back");
 		backButton.setPreferredSize(new Dimension(75, 30));
@@ -56,6 +68,9 @@ public class Page{ //superclass for all the pages
 		panel.add(header);
 	}
 
+    public void waterLevel(){
+
+    }
 
 	
 	public class ButtonClickListener implements ActionListener{

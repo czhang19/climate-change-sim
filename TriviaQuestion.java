@@ -22,7 +22,7 @@ public class TriviaQuestion{
 		qFrame.setLocationRelativeTo(null);
 		qFrame.setSize(400, 300);
 		qPanel = new JPanel(new FlowLayout());
-		//qLabel = new JLabel(question);
+		qLabel = new JLabel(question);
 		JButton trueButton = new JButton("True");
 		trueButton.setActionCommand("true");
 		trueButton.addActionListener(new ButtonClick());		

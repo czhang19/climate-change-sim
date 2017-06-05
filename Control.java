@@ -177,8 +177,7 @@ public class Control{ //to navigate between pages
                 tracker = level9;
             }
             else if (command.equals("back")){
-                //remove(tracker);
-                mainFrame.remove(level1.panel);
+                remove(tracker);
                 display(home);
             }
         }              
