@@ -94,9 +94,23 @@ public abstract class Page{ //superclass for all the pages
             bank.get(i).close();
         }
     }
+
+    public void trackAnswers(){
+        if (displayed == -1){
+            return;
+        }
+        for (int i = 0; i <= displayed; i++){
+            answers.add(bank.get(i).ansCorrectly);
+        }
+        System.out.println(bank);
+    }
     
     public abstract void info();
     
+    public void closeInfo(){
+        infoFrame.dispatchEvent(new WindowEvent(infoFrame, WindowEvent.WINDOW_CLOSING));
+    }
+
 	public void setHeader(String s){
 		header = new JLabel("Level " + s, JLabel.CENTER);
 		panel.add(header);
@@ -122,6 +136,7 @@ public abstract class Page{ //superclass for all the pages
                 timer.start();
                 qtimer.start();
             } 
+
 		}
 	}	
 

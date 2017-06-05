@@ -101,7 +101,9 @@ public class Control{ //to navigate between pages
 
     public void remove(Page page){
         page.closeTrivia();
+        page.closeInfo();
         page.resetWater();
+        //page.trackAnswers();
     	mainFrame.remove(page.panel);
         page.timer.stop();
         page.qtimer.stop();
