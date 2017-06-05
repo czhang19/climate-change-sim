@@ -9,7 +9,10 @@ import java.util.Date;
 public class Page1 extends Page {
     public Page1() {
         super();
+        super.addImage("trumppppp.jpg");
         setHeader("1: President Donald Trump");
+        panel.add(win);
+        win.setText("<html><body style='width: 750px'>");
     }
     
     public void info() {
@@ -19,6 +22,11 @@ public class Page1 extends Page {
         leaderInfo.setFont(new Font("Serif", Font.PLAIN, 24));
 		infoFrame.setVisible(true);
         infoFrame.setLocationRelativeTo(null);
+    }
+    
+    public void win() {
+        win.setText("<html><body style='width: 750px'>Congratulations! You have succeeded in drowning President Donald Trump by increasing CO2 levels sufficiently enough to rise sea levels and reach his Mar-a-Lago resort! Click back to return to the home page and attempt Level 2.");
+        panel.repaint();
     }
     
     public void level1Page() {

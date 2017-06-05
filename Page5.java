@@ -9,7 +9,10 @@ import java.util.Date;
 public class Page5 extends Page {
     public Page5() {
         super();
+        super.addImage("bruckerrrrr.jpg");
         setHeader("5: King Bruck");
+        panel.add(win);
+        win.setText("<html><body style='width: 750px'>");
     }
     
     public void info() {
@@ -19,6 +22,11 @@ public class Page5 extends Page {
         leaderInfo.setFont(new Font("Zapfino", Font.PLAIN, 24));
 		infoFrame.setVisible(true);
         infoFrame.setLocationRelativeTo(null);
+    }
+    
+    public void win() {
+        win.setText("<html><body style='width: 750px'>Congratulations! You have completed the impossible.");
+        panel.repaint();
     }
     
     public void level5Page() {

@@ -9,7 +9,10 @@ import java.util.Date;
 public class Page2 extends Page {
     public Page2() {
         super();
+        super.addImage("putinnnnn.jpg");
         setHeader("2: President Vladimir Putin");
+        panel.add(win);
+        win.setText("<html><body style='width: 750px'>");
     }
     
     public void info() {
@@ -19,6 +22,11 @@ public class Page2 extends Page {
         leaderInfo.setFont(new Font("Serif", Font.PLAIN, 24));
 		infoFrame.setVisible(true);
         infoFrame.setLocationRelativeTo(null);
+    }
+    
+    public void win() {
+        win.setText("<html><body style='width: 750px'>Congratulations! You have succeeded in drowning President Vladimir Putin by increasing CO2 levels sufficiently enough to rise sea levels and reach his residence in Moscow, Russia! Click back to return to the home page and attempt Level 3.");
+        panel.repaint();
     }
     
     public void level2Page() {

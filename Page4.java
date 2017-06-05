@@ -9,7 +9,10 @@ import java.util.Date;
 public class Page4 extends Page {
     public Page4() {
         super();
+        super.addImage("merkelllll.jpg");
         setHeader("4: Chancellor Angela Merkel");
+        panel.add(win);
+        win.setText("<html><body style='width: 750px'>");
     }
     
     public void info() {
@@ -19,6 +22,11 @@ public class Page4 extends Page {
         leaderInfo.setFont(new Font("Serif", Font.PLAIN, 24));
 		infoFrame.setVisible(true);
         infoFrame.setLocationRelativeTo(null);
+    }
+    
+    public void win() {
+        win.setText("<html><body style='width: 750px'>Congratulations! You have succeeded in drowning Chancellor Angela Merkel in Berlin, Germany by increasing CO2 levels sufficiently enough to rise sea levels! Click back to return to the home page and attempt Level 5.");
+        panel.repaint();
     }
     
     public void level4Page() {
