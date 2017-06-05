@@ -199,7 +199,7 @@ public abstract class Page{ //superclass for all the pages
                 timer.start();
                 qtimer.start();
             } else if (command.equals("ch4")){
-                waterLevel -= 75;
+                waterLevel -= (3*waterInterval);
                 ch4.setEnabled(false);
                 panel.repaint();
             } 
