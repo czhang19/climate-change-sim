@@ -8,9 +8,10 @@ public class TriviaQuestion{
 	JFrame qFrame;
 	JPanel qPanel;
 	JLabel qLabel;
+    JTextArea qText;
 	Timer timer;
 	JLabel correct = new JLabel("Correct!");
-	JLabel incorrect = new JLabel("Incorrect");
+	JLabel incorrect = new JLabel("Incorrect :(");
 
 	public TriviaQuestion(String question, String answer){
 		this.question = question;

@@ -8,6 +8,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.Collections;
 
 public class Control{ //to navigate between pages
 	public JFrame mainFrame;
@@ -65,19 +66,23 @@ public class Control{ //to navigate between pages
        	mainFrame.setVisible(true);
     
         File f = new File("TriviaBank.txt");
-        Scanner input = new Scanner(f);
+        Scanner input = new Scanner(f); // scans trivia bank
         input.useDelimiter("\\s*=\\s*");
         qbank = new ArrayList<TriviaQuestion>();
         String question = "";
         String answer = "";
+        String html1 = "";
+        String html2 = "";
         while (input.hasNextLine()) {
-            question = input.next();
+            html1 = "<html><body style='width: "; 
+            html2 = "px'>";
+            question = html1+ "300" + html2 + input.next(); // sets width to fit jframe
             answer = input.next();
             qbank.add(new TriviaQuestion(question, answer));
         }
         input.close();
     }
-
+    
     public static void main(String[] args) 
             throws FileNotFoundException {
     	Control game = new Control();
@@ -101,6 +106,7 @@ public class Control{ //to navigate between pages
         page.panel.add(page.timeDisplay);
         mainFrame.add(page.panel);
         mainFrame.setVisible(true);
+        Collections.shuffle(qbank);
         page.bank = qbank;
         page.qtimer.start();
     }
