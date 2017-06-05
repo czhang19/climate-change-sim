@@ -3,6 +3,7 @@ import java.awt.event.*;
 import javax.swing.*;
 import java.time.*;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.ArrayList;
@@ -19,13 +20,31 @@ public abstract class Page{ //superclass for all the pages
 	public JLabel timeDisplay;
     public JLabel leaderInfo;
     public ArrayList<TriviaQuestion> bank;
+    public JButton co2;
+
 	
 	public Page(){
         playButton = new JButton("Play!");
 		playButton.setActionCommand("play");
 		playButton.addActionListener(new ButtonClickListener());
-        
 		panel = new JPanel(new GridLayout(4, 4));	
+        
+		panel = new JPanel(){
+            @Override
+            public void paintComponent(Graphics g){
+                super.paintComponent(g);
+                Graphics2D g2 = (Graphics2D)g;
+                g2.setColor(new Color(25, 150, 200));
+                g2.fillRect(0, 500, 1000, 750);
+            }
+            
+        };
+        co2 = new JButton("CO2");
+        co2.setActionCommand("co2");
+        co2.addActionListener(new ButtonClickListener());
+        waterLevel();
+        panel.setLayout(new GridLayout(4,4));
+
 		backButton = new JButton("Back");
 		backButton.setActionCommand("back");
 		backButton.setPreferredSize(new Dimension(75, 30));
@@ -49,7 +68,7 @@ public abstract class Page{ //superclass for all the pages
         
         // displays the trivia questions every 60 seconds
         //Collections.shuffle(bank);
-        qtimer = new Timer(60000, new ActionListener() {
+        qtimer = new Timer(5000, new ActionListener() {
             int i = 0;
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -68,16 +87,26 @@ public abstract class Page{ //superclass for all the pages
 		header = new JLabel("Level " + s, JLabel.CENTER);
 		panel.add(header);
 	}
+
+    public void waterLevel(){
+
+    }
+
 	
 	public class ButtonClickListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
         	String command = e.getActionCommand();
-        	
+
             if (command.equals("play")){
             	infoFrame.dispatchEvent(new WindowEvent(infoFrame, WindowEvent.WINDOW_CLOSING));
                 timer.start();
                 qtimer.start();
-            }
+            } 
+            else if (command.equals("co2")){
+                waterLevel();
+            }	
 		}
 	}	
+
+
 }

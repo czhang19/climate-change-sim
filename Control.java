@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Collections;
 
+
 public class Control{ //to navigate between pages
 	public JFrame mainFrame;
 	public Start start;
@@ -21,6 +22,7 @@ public class Control{ //to navigate between pages
 	public Page level5;
 	public Page tracker;
     public ArrayList<TriviaQuestion> qbank;
+
 
     public Control() 
             throws FileNotFoundException {
