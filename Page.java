@@ -28,6 +28,7 @@ public abstract class Page{ //superclass for all the pages
 
 	
 	public Page(){
+        // information page for each leader
         infoFrame = new JFrame();
 		infoFrame.setSize(1000, 750);
         infoPanel = new JPanel(new FlowLayout());
@@ -41,9 +42,10 @@ public abstract class Page{ //superclass for all the pages
 		infoPanel.add(leaderInfo);
 		infoPanel.add(playButton);
         
+        // game page
         waterLevel = 500;
         waterInterval = 25;
-		panel = new JPanel(new GridLayout(4, 4)){
+		panel = new JPanel(new GridBagLayout()){
             @Override
             public void paintComponent(Graphics g){
                 super.paintComponent(g);
@@ -53,14 +55,30 @@ public abstract class Page{ //superclass for all the pages
             }
 
         };
-        co2 = new JButton("CO2");
-        co2.setActionCommand("co2");
-        co2.addActionListener(new ButtonClickListener());
-        panel.setLayout(new GridLayout(4,4));
-
+        
+        GridBagConstraints c = new GridBagConstraints();
+        
+        // back button to get to home page
 		backButton = new JButton("Back");
 		backButton.setActionCommand("back");
 		backButton.setPreferredSize(new Dimension(75, 30));
+        c.weightx = 0.5;
+        c.fill = GridBagConstraints.HORIZONTAL;
+        c.gridx = 0;
+        c.gridy = 0;
+        panel.add(backButton, c);
+        
+        // co2 button
+        co2 = new JButton("CO2");
+        co2.setActionCommand("co2");
+        co2.addActionListener(new ButtonClickListener());
+        c.fill = GridBagConstraints.HORIZONTAL;
+        c.weightx = 0.5;
+        c.gridx = 1;
+        c.gridy = 0;
+        panel.add(co2, c);
+        
+        // stopwatch with current "date"
 		timeDisplay = new JLabel();
         String dt = new SimpleDateFormat("EEE, d MMM yyyy").format(new Date()); // starts date as today
         SimpleDateFormat sdf = new SimpleDateFormat("EEE, d MMM yyyy");
@@ -68,6 +86,11 @@ public abstract class Page{ //superclass for all the pages
         cal.add(Calendar.DATE, 1);  // number of days to add
         dt = sdf.format(cal.getTime());
         timeDisplay.setText(sdf.format(cal.getTime()));
+        c.fill = GridBagConstraints.HORIZONTAL;
+        c.weightx = 0.5;
+        c.gridx = 2;
+        c.gridy = 0;
+        panel.add(timeDisplay, c);
 
         // displays the "date", currently 10 days in 1 second
        	timer = new Timer(100, new ActionListener() {
@@ -80,7 +103,6 @@ public abstract class Page{ //superclass for all the pages
         });
         
         // displays the trivia questions every 60 seconds
-        //Collections.shuffle(bank);
         qtimer = new Timer(10000, new ActionListener() {
             int i = 0;
             @Override
@@ -91,9 +113,9 @@ public abstract class Page{ //superclass for all the pages
                 i++;
             }
         });
-		panel.add(backButton);
-        panel.add(co2);
-		panel.add(timeDisplay);
+		//panel.add(backButton);
+        //panel.add(co2);
+		//panel.add(timeDisplay);
 
         ImageIcon icon = new ImageIcon("trumppppp.jpg");
         Image scaleImage = icon.getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT);
@@ -101,7 +123,14 @@ public abstract class Page{ //superclass for all the pages
         JLabel label = new JLabel(imageicon);
         label.setHorizontalAlignment(JLabel.RIGHT);
         label.setVerticalAlignment(JLabel.TOP);
-        panel.add(label);
+        c.fill = GridBagConstraints.HORIZONTAL;
+        c.ipady = 40;      //make this component tall
+        c.weightx = 0.0;
+        c.gridwidth = 3;
+        c.gridx = 0;
+        c.gridy = 1;
+        panel.add(label, c);
+        //panel.add(label);
 	}
 
     public void closeTrivia(){
