@@ -28,17 +28,12 @@ public abstract class Page{ //superclass for all the pages
 
 	
 	public Page(){
-<<<<<<< HEAD
         waterLevel = 500;
         waterInterval = 25;
-=======
         playButton = new JButton("Play!");
 		playButton.setActionCommand("play");
-		playButton.addActionListener(new ButtonClickListener());
-		panel = new JPanel(new GridLayout(4, 4));	
-        
->>>>>>> 66d093f253e7b84266565b6d492beeddc9821690
-		panel = new JPanel(){
+		playButton.addActionListener(new ButtonClickListener());	
+		panel = new JPanel(new GridLayout(4, 4)){
             @Override
             public void paintComponent(Graphics g){
                 super.paintComponent(g);
@@ -90,8 +85,6 @@ public abstract class Page{ //superclass for all the pages
         panel.add(co2);
 		panel.add(timeDisplay);
 	}
-<<<<<<< HEAD
-
 
     public void closeTrivia(){
         if (displayed == -1){
@@ -101,16 +94,11 @@ public abstract class Page{ //superclass for all the pages
             bank.get(i).close();
         }
     }
-
-	public void setHeader(int number){
-		header = new JLabel("Level " + number, JLabel.CENTER);
-=======
     
     public abstract void info();
     
 	public void setHeader(String s){
 		header = new JLabel("Level " + s, JLabel.CENTER);
->>>>>>> 66d093f253e7b84266565b6d492beeddc9821690
 		panel.add(header);
 	}
 
@@ -126,20 +114,14 @@ public abstract class Page{ //superclass for all the pages
 	public class ButtonClickListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
         	String command = e.getActionCommand();
-<<<<<<< HEAD
             if (command.equals("co2")){
                 waterLevelRising();
-=======
-
-            if (command.equals("play")){
+            }    
+            else if (command.equals("play")){
             	infoFrame.dispatchEvent(new WindowEvent(infoFrame, WindowEvent.WINDOW_CLOSING));
                 timer.start();
                 qtimer.start();
             } 
-            else if (command.equals("co2")){
-                waterLevel();
->>>>>>> 66d093f253e7b84266565b6d492beeddc9821690
-            }	
 		}
 	}	
 
