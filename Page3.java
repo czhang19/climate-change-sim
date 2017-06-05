@@ -9,6 +9,7 @@ import java.util.Date;
 public class Page3 extends Page {
     public Page3() {
         super();
+        super.addImage("trudeauuuuu.jpg");
         setHeader("3: Justin Trudeau");
     }
     
