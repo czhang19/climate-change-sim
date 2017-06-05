@@ -20,8 +20,9 @@ public abstract class Page{ //superclass for all the pages
 	public JLabel timeDisplay;
     public JLabel leaderInfo;
     public ArrayList<TriviaQuestion> bank;
-    public int displayed = -1;
+    public int displayed = 0;
     public ArrayList<Boolean> answers;
+    public int qCounter = 0;
     public JButton co2;
     public int waterLevel;
     public int waterInterval;
@@ -49,7 +50,7 @@ public abstract class Page{ //superclass for all the pages
                 super.paintComponent(g);
                 Graphics2D g2 = (Graphics2D)g;
                 g2.setColor(new Color(25, 150, 200));
-                g2.fillRect(0, waterLevel, 1000, 750);
+                g2.fillRect(0, waterLevel, 1000, 750-waterLevel);
             }
 
         };
@@ -81,13 +82,16 @@ public abstract class Page{ //superclass for all the pages
         
         // displays the trivia questions every 60 seconds
         //Collections.shuffle(bank);
+        answers = new ArrayList<Boolean>();
         qtimer = new Timer(10000, new ActionListener() {
             int i = 0;
             @Override
             public void actionPerformed(ActionEvent e) {
                 TriviaQuestion test = bank.get(i);
                 test.displayQuestion();
-                displayed = i;
+                displayed = i+1;
+                answers.add(Boolean.FALSE);
+                bank.get(i).answered.addActionListener(new ButtonClickListener());
                 i++;
             }
         });
@@ -108,22 +112,26 @@ public abstract class Page{ //superclass for all the pages
     }
 
     public void closeTrivia(){
-        if (displayed == -1){
-            return;
-        }
-        for (int i = 0; i <= displayed; i++){
+        for (int i = 0; i < displayed; i++){
             bank.get(i).close();
         }
     }
 
-    public void trackAnswers(){
-        if (displayed == -1){
-            return;
+    public void updateCounter(){
+        int counter = 0;
+        for (int i = 0; i < answers.size(); i++){
+            if (answers.get(i)){
+                counter++;
+            }
         }
-        for (int i = 0; i <= displayed; i++){
-            answers.add(bank.get(i).ansCorrectly);
-        }
-        System.out.println(bank);
+        qCounter = counter;
+        System.out.println(qCounter);
+    }
+
+    public void resetCounter(){
+        qCounter = 0;
+        answers.clear();
+        displayed = 0;
     }
     
     public abstract void info();
@@ -157,9 +165,14 @@ public abstract class Page{ //superclass for all the pages
                 timer.start();
                 qtimer.start();
             } 
-
+            else if (command.equals("answered")){
+                for (int i = 0; i <= answers.size(); i++){
+                    if (bank.get(i).ansCorrectly){
+                        answers.set(i, Boolean.TRUE);
+                    }
+                }
+                updateCounter();
+            }
 		}
 	}	
-
-
 }

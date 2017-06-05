@@ -103,7 +103,7 @@ public class Control{ //to navigate between pages
         page.closeTrivia();
         page.closeInfo();
         page.resetWater();
-        //page.trackAnswers();
+        page.resetCounter();
     	mainFrame.remove(page.panel);
         page.timer.stop();
         page.qtimer.stop();
