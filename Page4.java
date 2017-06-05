@@ -9,6 +9,7 @@ import java.util.Date;
 public class Page4 extends Page {
     public Page4() {
         super();
+        super.addImage("merkelllll.jpg");
         setHeader("4: Chancellor Angela Merkel");
         waterInterval = 5;
     }

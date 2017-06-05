@@ -9,6 +9,7 @@ import java.util.Date;
 public class Page5 extends Page {
     public Page5() {
         super();
+        super.addImage("bruckerrrrr.jpg");
         setHeader("5: King Bruck");
         waterInterval = 1;
     }

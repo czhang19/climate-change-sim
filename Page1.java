@@ -9,6 +9,7 @@ import java.util.Date;
 public class Page1 extends Page {
     public Page1() {
         super();
+        super.addImage("trumppppp.jpg");
         setHeader("1: President Donald Trump");
     }
     
