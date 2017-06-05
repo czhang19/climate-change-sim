@@ -42,7 +42,9 @@ public class Page{ //superclass for all the pages
         cal.add(Calendar.DATE, 1);  // number of days to add
         dt = sdf.format(cal.getTime());
         timeDisplay.setText(sdf.format(cal.getTime()));
-       	timer = new Timer(1000, new ActionListener() {
+        
+        // displays the "date", currently 10 days in 1 second
+       	timer = new Timer(100, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 cal.add(Calendar.DATE, 1);
@@ -50,7 +52,10 @@ public class Page{ //superclass for all the pages
                 
             }
         });
-        qtimer = new Timer(10000, new ActionListener() {
+        
+        // displays the trivia questions every 60 seconds
+        //Collections.shuffle(bank);
+        qtimer = new Timer(60000, new ActionListener() {
             int i = 0;
             @Override
             public void actionPerformed(ActionEvent e) {
