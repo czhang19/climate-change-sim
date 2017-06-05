@@ -42,7 +42,7 @@ public abstract class Page{ //superclass for all the pages
 		infoPanel.add(playButton);
         
         waterLevel = 500;
-        waterInterval = 25;
+        waterInterval = 20;
 		panel = new JPanel(new GridLayout(4, 4)){
             @Override
             public void paintComponent(Graphics g){

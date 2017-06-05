@@ -10,6 +10,7 @@ public class Page5 extends Page {
     public Page5() {
         super();
         setHeader("5: King Bruck");
+        waterInterval = 1;
     }
     
     public void info() {

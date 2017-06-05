@@ -10,6 +10,7 @@ public class Page3 extends Page {
     public Page3() {
         super();
         setHeader("3: Justin Trudeau");
+        waterInterval = 10;
     }
     
     public void info() {

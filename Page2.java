@@ -10,6 +10,7 @@ public class Page2 extends Page {
     public Page2() {
         super();
         setHeader("2: President Vladimir Putin");
+        waterInterval = 15;
     }
     
     public void info() {

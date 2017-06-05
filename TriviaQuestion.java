@@ -9,6 +9,8 @@ public class TriviaQuestion{
 	JPanel qPanel;
 	JLabel qLabel;
     JTextArea qText;
+    JButton trueButton;
+    JButton falseButton;
 	Timer timer;
 	boolean ansCorrectly;
 	boolean isClosed = false;
@@ -27,12 +29,12 @@ public class TriviaQuestion{
 		addAction();
 		qPanel = new JPanel(new FlowLayout());
 		qLabel = new JLabel(question);
-		JButton trueButton = new JButton("True");
+		trueButton = new JButton("True");
 		trueButton.setActionCommand("true");
-		trueButton.addActionListener(new ButtonClick());		
-		JButton falseButton = new JButton("False");
+		//trueButton.addActionListener(new ButtonClick());		
+		falseButton = new JButton("False");
 		falseButton.setActionCommand("false");
-		falseButton.addActionListener(new ButtonClick());
+		//falseButton.addActionListener(new ButtonClick());
 		qFrame.add(qPanel);
 		qPanel.add(qLabel);
 		qPanel.add(trueButton);
@@ -61,33 +63,33 @@ public class TriviaQuestion{
   	private class ButtonClick implements ActionListener{
         public void actionPerformed(ActionEvent e){
             String command = e.getActionCommand();
-            if (command.equals("true")){
-            	qFrame.remove(qPanel);
-            	if (answer){
-            		qFrame.add(correct);
-            		ansCorrectly = true;
-            	}
-            	else{
-            		qFrame.add(incorrect);
-            		ansCorrectly = false;
-            	}
-            	qFrame.setVisible(true);
-            	timer.start();
-            }
-            else if (command.equals("false")){
-            	qFrame.remove(qPanel);
-            	if (!answer){
-            		qFrame.add(correct);
-            		ansCorrectly = true;
-            	}
-            	else{
-            		qFrame.add(incorrect);
-            		ansCorrectly = false;
-            	}
-            	qFrame.setVisible(true);
-            	timer.start();
-            }
-            else if (command.equals("timer")){
+            // if (command.equals("true")){
+            // 	qFrame.remove(qPanel);
+            // 	if (answer){
+            // 		qFrame.add(correct);
+            // 		ansCorrectly = true;
+            // 	}
+            // 	else{
+            // 		qFrame.add(incorrect);
+            // 		ansCorrectly = false;
+            // 	}
+            // 	qFrame.setVisible(true);
+            // 	timer.start();
+            // }
+            // else if (command.equals("false")){
+            // 	qFrame.remove(qPanel);
+            // 	if (!answer){
+            // 		qFrame.add(correct);
+            // 		ansCorrectly = true;
+            // 	}
+            // 	else{
+            // 		qFrame.add(incorrect);
+            // 		ansCorrectly = false;
+            // 	}
+            // 	qFrame.setVisible(true);
+            // 	timer.start();
+            // }
+            if (command.equals("timer")){
             	qFrame.dispatchEvent(new WindowEvent(qFrame, WindowEvent.WINDOW_CLOSING));
             }
 		}

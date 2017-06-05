@@ -10,6 +10,7 @@ public class Page4 extends Page {
     public Page4() {
         super();
         setHeader("4: Chancellor Angela Merkel");
+        waterInterval = 5;
     }
     
     public void info() {
