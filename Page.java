@@ -70,6 +70,11 @@ public class Page{ //superclass for all the pages
         });
 		panel.add(backButton);
 		panel.add(timeDisplay);
+        ImageIcon image = new ImageIcon("trumppppp.jpg");
+        JLabel label = new JLabel("", image, JLabel.CENTER);
+        label.setHorizontalAlignment(JLabel.RIGHT);
+        label.setVerticalAlignment(JLabel.TOP);
+        panel.add(label);
 	}
 
 	public void setHeader(int number){
