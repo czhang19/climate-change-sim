@@ -28,11 +28,21 @@ public abstract class Page{ //superclass for all the pages
 
 	
 	public Page(){
-        waterLevel = 500;
-        waterInterval = 25;
+        infoFrame = new JFrame();
+		infoFrame.setSize(1000, 750);
+        infoPanel = new JPanel(new FlowLayout());
+        leaderInfo = new JLabel();
         playButton = new JButton("Play!");
 		playButton.setActionCommand("play");
 		playButton.addActionListener(new ButtonClickListener());	
+        infoPanel.add(leaderInfo);
+        infoPanel.add(playButton);
+        infoFrame.add(infoPanel);
+		infoPanel.add(leaderInfo);
+		infoPanel.add(playButton);
+        
+        waterLevel = 500;
+        waterInterval = 25;
 		panel = new JPanel(new GridLayout(4, 4)){
             @Override
             public void paintComponent(Graphics g){
