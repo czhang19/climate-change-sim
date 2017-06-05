@@ -93,6 +93,8 @@ public class Control{ //to navigate between pages
         page.panel.revalidate();
         page.panel.repaint();
         page.co2.setEnabled(true);
+        page.ch4.setEnabled(true);
+        //page.ch4.setEnabled(true);
         mainFrame.setVisible(true);
         page.info();
         Collections.shuffle(qbank);

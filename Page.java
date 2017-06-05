@@ -25,6 +25,7 @@ public abstract class Page{ //superclass for all the pages
     public int displayed = -1;
     public ArrayList<Boolean> answers;
     public JButton co2;
+    public JButton ch4;
     public int waterLevel;
     public int waterInterval;
 
@@ -76,6 +77,10 @@ public abstract class Page{ //superclass for all the pages
         co2 = new JButton("CO2");
         co2.setActionCommand("co2");
         co2.addActionListener(new ButtonClickListener());
+
+        ch4 = new JButton("CH4");
+        ch4.setActionCommand("ch4");
+        ch4.addActionListener(new ButtonClickListener());
         //c.gridwidth = GridBagConstraints.REMAINDER;
         //c.weightx = 0.9;
         //c.gridx = 100;
@@ -125,6 +130,7 @@ public abstract class Page{ //superclass for all the pages
         
 		panel.add(backButton);
         panel.add(co2);
+        panel.add(ch4);
 		panel.add(timeDisplay);
 	}
 
@@ -166,7 +172,10 @@ public abstract class Page{ //superclass for all the pages
 
     public void waterLevelRising(){
         waterLevel -= waterInterval;
-        if (waterLevel == 50) {
+        if (waterLevel % 150 == 0 && waterLevel > 50) {
+            ch4.setEnabled(true);
+        }
+        if (waterLevel < 50) {
             co2.setEnabled(false);
             win();
             timer.stop();
@@ -189,6 +198,10 @@ public abstract class Page{ //superclass for all the pages
             	infoFrame.dispatchEvent(new WindowEvent(infoFrame, WindowEvent.WINDOW_CLOSING));
                 timer.start();
                 qtimer.start();
+            } else if (command.equals("ch4")){
+                waterLevel -= 75;
+                ch4.setEnabled(false);
+                panel.repaint();
             } 
 		}
 	}	
