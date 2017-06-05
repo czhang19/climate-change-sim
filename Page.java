@@ -84,8 +84,11 @@ public abstract class Page{ //superclass for all the pages
 		panel.add(backButton);
         panel.add(co2);
 		panel.add(timeDisplay);
-        ImageIcon image = new ImageIcon("trumppppp.jpg");
-        JLabel label = new JLabel("", image, JLabel.CENTER);
+
+        ImageIcon icon = new ImageIcon("trumppppp.jpg");
+        Image scaleImage = icon.getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT);
+        ImageIcon imageicon = new ImageIcon(scaleImage);
+        JLabel label = new JLabel(imageicon);
         label.setHorizontalAlignment(JLabel.RIGHT);
         label.setVerticalAlignment(JLabel.TOP);
         panel.add(label);
