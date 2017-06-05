@@ -8,14 +8,17 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.ArrayList;
 
-
-public class Page{ //superclass for all the pages
+public abstract class Page{ //superclass for all the pages
 	public JButton backButton;
+    public JButton playButton;
+    public JFrame infoFrame;
 	public JPanel panel;
+    public JPanel infoPanel;
 	public JLabel header;
 	public Timer timer;
     public Timer qtimer;
 	public JLabel timeDisplay;
+    public JLabel leaderInfo;
     public ArrayList<TriviaQuestion> bank;
     public int displayed = -1;
     public ArrayList<Boolean> answers;
@@ -25,8 +28,16 @@ public class Page{ //superclass for all the pages
 
 	
 	public Page(){
+<<<<<<< HEAD
         waterLevel = 500;
         waterInterval = 25;
+=======
+        playButton = new JButton("Play!");
+		playButton.setActionCommand("play");
+		playButton.addActionListener(new ButtonClickListener());
+		panel = new JPanel(new GridLayout(4, 4));	
+        
+>>>>>>> 66d093f253e7b84266565b6d492beeddc9821690
 		panel = new JPanel(){
             @Override
             public void paintComponent(Graphics g){
@@ -41,6 +52,7 @@ public class Page{ //superclass for all the pages
         co2.setActionCommand("co2");
         co2.addActionListener(new ButtonClickListener());
         panel.setLayout(new GridLayout(4,4));
+
 		backButton = new JButton("Back");
 		backButton.setActionCommand("back");
 		backButton.setPreferredSize(new Dimension(75, 30));
@@ -51,7 +63,7 @@ public class Page{ //superclass for all the pages
         cal.add(Calendar.DATE, 1);  // number of days to add
         dt = sdf.format(cal.getTime());
         timeDisplay.setText(sdf.format(cal.getTime()));
-        
+
         // displays the "date", currently 10 days in 1 second
        	timer = new Timer(100, new ActionListener() {
             @Override
@@ -78,6 +90,7 @@ public class Page{ //superclass for all the pages
         panel.add(co2);
 		panel.add(timeDisplay);
 	}
+<<<<<<< HEAD
 
 
     public void closeTrivia(){
@@ -91,6 +104,13 @@ public class Page{ //superclass for all the pages
 
 	public void setHeader(int number){
 		header = new JLabel("Level " + number, JLabel.CENTER);
+=======
+    
+    public abstract void info();
+    
+	public void setHeader(String s){
+		header = new JLabel("Level " + s, JLabel.CENTER);
+>>>>>>> 66d093f253e7b84266565b6d492beeddc9821690
 		panel.add(header);
 	}
 
@@ -106,8 +126,19 @@ public class Page{ //superclass for all the pages
 	public class ButtonClickListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
         	String command = e.getActionCommand();
+<<<<<<< HEAD
             if (command.equals("co2")){
                 waterLevelRising();
+=======
+
+            if (command.equals("play")){
+            	infoFrame.dispatchEvent(new WindowEvent(infoFrame, WindowEvent.WINDOW_CLOSING));
+                timer.start();
+                qtimer.start();
+            } 
+            else if (command.equals("co2")){
+                waterLevel();
+>>>>>>> 66d093f253e7b84266565b6d492beeddc9821690
             }	
 		}
 	}	
