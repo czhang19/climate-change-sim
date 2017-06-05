@@ -14,6 +14,7 @@ public class Start {
 	public Start(){
         panel = new JPanel(new FlowLayout());
         intro = new JLabel("Flood", JLabel.CENTER);
+        intro.setFont(new Font("Serif", Font.PLAIN, 48));
         startButton = new JButton("Start");
         startButton.setActionCommand("start"); //set action command
         //startButton.addActionListener(new ButtonClickListener());

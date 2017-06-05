@@ -92,6 +92,9 @@ public class Control{ //to navigate between pages
         mainFrame.add(page.panel);
         page.panel.revalidate();
         page.panel.repaint();
+        page.co2.setEnabled(true);
+        page.ch4.setEnabled(true);
+        //page.ch4.setEnabled(true);
         mainFrame.setVisible(true);
         page.info();
         Collections.shuffle(qbank);
@@ -104,9 +107,8 @@ public class Control{ //to navigate between pages
         page.closeInfo();
         page.resetWater();
         page.resetCounter();
+        page.win.setText("<html><body style='width: 750px'>");
     	mainFrame.remove(page.panel);
-        page.timer.stop();
-        page.qtimer.stop();
     }
 
     public void remove(Start start){
