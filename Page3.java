@@ -13,16 +13,10 @@ public class Page3 extends Page {
     }
     
     public void info() {
-        infoFrame = new JFrame("Justin Trudeau");
-		infoFrame.setSize(1000, 750);
-        infoPanel = new JPanel(new FlowLayout());
+        infoFrame.setTitle("Justin Trudeau");
         // make this frame immovable
-        leaderInfo = new JLabel("blah blah blah stuff on Trudeau");
-        infoPanel.add(leaderInfo);
-        infoPanel.add(playButton);
-        infoFrame.add(infoPanel);
-		infoPanel.add(leaderInfo);
-		infoPanel.add(playButton);
+        leaderInfo.setText("<html><body style='width: 750px'>Justin Trudeau is in Ottawa, Canada. While Justin Trudeau has made some controversial decisions regarding climate change (supporting the revival of the Keystone Pipeline), he is far from skeptic and is strong in his stance to reduce global carbon emissions. He will be somewhat difficult to drown. Press play when you are ready to begin!");
+        leaderInfo.setFont(new Font("Serif", Font.PLAIN, 24));
 		infoFrame.setVisible(true);
         infoFrame.setLocationRelativeTo(null);
     }

@@ -13,16 +13,10 @@ public class Page5 extends Page {
     }
     
     public void info() {
-        infoFrame = new JFrame("King Bruck");
-		infoFrame.setSize(1000, 750);
-        infoPanel = new JPanel(new FlowLayout());
+        infoFrame.setTitle("King Bruck");
         // make this frame immovable
-        leaderInfo = new JLabel("blah blah blah stuff on King Bruck");
-        infoPanel.add(leaderInfo);
-        infoPanel.add(playButton);
-        infoFrame.add(infoPanel);
-		infoPanel.add(leaderInfo);
-		infoPanel.add(playButton);
+        leaderInfo.setText("<html><body style='width: 750px'>King Bruck is currently located in Room BPi at our beloved Mission San Jose High School in Fremont, California. King Bruck is a champion of climate science. He will be nearly impossible to drown. Press play when you are ready to begin!");
+        leaderInfo.setFont(new Font("Zapfino", Font.PLAIN, 24));
 		infoFrame.setVisible(true);
         infoFrame.setLocationRelativeTo(null);
     }
