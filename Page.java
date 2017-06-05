@@ -7,16 +7,24 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.ArrayList;
 
-public class Page{ //superclass for all the pages
+public abstract class Page{ //superclass for all the pages
 	public JButton backButton;
+    public JButton playButton;
+    public JFrame infoFrame;
 	public JPanel panel;
+    public JPanel infoPanel;
 	public JLabel header;
 	public Timer timer;
     public Timer qtimer;
 	public JLabel timeDisplay;
+    public JLabel leaderInfo;
     public ArrayList<TriviaQuestion> bank;
 	
 	public Page(){
+        playButton = new JButton("Play!");
+		playButton.setActionCommand("play");
+		playButton.addActionListener(new ButtonClickListener());
+        
 		panel = new JPanel(new GridLayout(4, 4));	
 		backButton = new JButton("Back");
 		backButton.setActionCommand("back");
@@ -28,7 +36,7 @@ public class Page{ //superclass for all the pages
         cal.add(Calendar.DATE, 1);  // number of days to add
         dt = sdf.format(cal.getTime());
         timeDisplay.setText(sdf.format(cal.getTime()));
-        
+
         // displays the "date", currently 10 days in 1 second
        	timer = new Timer(100, new ActionListener() {
             @Override
@@ -53,9 +61,11 @@ public class Page{ //superclass for all the pages
 		panel.add(backButton);
 		panel.add(timeDisplay);
 	}
-
-	public void setHeader(int number){
-		header = new JLabel("Level " + number, JLabel.CENTER);
+    
+    public abstract void info();
+    
+	public void setHeader(String s){
+		header = new JLabel("Level " + s, JLabel.CENTER);
 		panel.add(header);
 	}
 	
@@ -63,6 +73,11 @@ public class Page{ //superclass for all the pages
 		public void actionPerformed(ActionEvent e){
         	String command = e.getActionCommand();
         	
+            if (command.equals("play")){
+            	infoFrame.dispatchEvent(new WindowEvent(infoFrame, WindowEvent.WINDOW_CLOSING));
+                timer.start();
+                qtimer.start();
+            }
 		}
 	}	
 }

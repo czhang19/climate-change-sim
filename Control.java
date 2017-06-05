@@ -19,10 +19,6 @@ public class Control{ //to navigate between pages
 	public Page level3;
 	public Page level4;
 	public Page level5;
-	public Page level6;
-	public Page level7;
-	public Page level8;
-	public Page level9;
 	public Page tracker;
     public ArrayList<TriviaQuestion> qbank;
 
@@ -41,28 +37,16 @@ public class Control{ //to navigate between pages
     	home.level3Button.addActionListener(new ButtonClickListener());
     	home.level4Button.addActionListener(new ButtonClickListener());
     	home.level5Button.addActionListener(new ButtonClickListener());
-    	home.level6Button.addActionListener(new ButtonClickListener());
-    	home.level7Button.addActionListener(new ButtonClickListener());
-    	home.level8Button.addActionListener(new ButtonClickListener());
-    	home.level9Button.addActionListener(new ButtonClickListener());
         level1 = new Page1();
         level2 = new Page2();
        	level3 = new Page3();
        	level4 = new Page4();
        	level5 = new Page5();
-       	level6 = new Page6();
-       	level7 = new Page7();
-       	level8 = new Page8();
-       	level9 = new Page9();
        	level1.backButton.addActionListener(new ButtonClickListener());
        	level2.backButton.addActionListener(new ButtonClickListener());
        	level3.backButton.addActionListener(new ButtonClickListener());
        	level4.backButton.addActionListener(new ButtonClickListener());
        	level5.backButton.addActionListener(new ButtonClickListener());
-       	level6.backButton.addActionListener(new ButtonClickListener());
-       	level7.backButton.addActionListener(new ButtonClickListener());
-       	level8.backButton.addActionListener(new ButtonClickListener());
-       	level9.backButton.addActionListener(new ButtonClickListener());
        	mainFrame.setVisible(true);
     
         File f = new File("TriviaBank.txt");
@@ -102,13 +86,14 @@ public class Control{ //to navigate between pages
     }
 
     public void display(Page page){
-        page.timer.start();
         page.panel.add(page.timeDisplay);
         mainFrame.add(page.panel);
+        page.panel.revalidate();
+        page.panel.repaint();
         mainFrame.setVisible(true);
+        page.info();
         Collections.shuffle(qbank);
         page.bank = qbank;
-        page.qtimer.start();
     }
 
 
@@ -158,26 +143,6 @@ public class Control{ //to navigate between pages
                 remove(home);
                 display(level5);
                 tracker = level5;
-            }
-            else if (command.equals("level6")){
-                remove(home);
-                display(level6);
-                tracker = level6;
-            }
-            else if (command.equals("level7")){
-                remove(home);
-                display(level7);
-                tracker = level7;
-            }
-            else if (command.equals("level8")){
-                remove(home);
-                display(level8);
-                tracker = level8;
-            }
-            else if (command.equals("level9")){
-                remove(home);
-                display(level9);
-                tracker = level9;
             }
             else if (command.equals("back")){
                 remove(tracker);
