@@ -107,6 +107,8 @@ public class Control{ //to navigate between pages
         page.timer.start();
         page.panel.add(page.timeDisplay);
         mainFrame.add(page.panel);
+        page.panel.revalidate();
+        page.panel.repaint();
         mainFrame.setVisible(true);
         Collections.shuffle(qbank);
         page.bank = qbank;
@@ -116,6 +118,8 @@ public class Control{ //to navigate between pages
 
 
     public void remove(Page page){
+        page.closeTrivia();
+        page.resetWater();
     	mainFrame.remove(page.panel);
         page.timer.stop();
         page.qtimer.stop();

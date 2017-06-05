@@ -10,6 +10,8 @@ public class TriviaQuestion{
 	JLabel qLabel;
     JTextArea qText;
 	Timer timer;
+	boolean ansCorrectly;
+	boolean isClosed = false;
 	JLabel correct = new JLabel("Correct!");
 	JLabel incorrect = new JLabel("Incorrect :(");
 
@@ -22,6 +24,7 @@ public class TriviaQuestion{
 		qFrame = new JFrame("Trivia!");
 		qFrame.setLocationRelativeTo(null);
 		qFrame.setSize(400, 300);
+		addAction();
 		qPanel = new JPanel(new FlowLayout());
 		qLabel = new JLabel(question);
 		JButton trueButton = new JButton("True");
@@ -39,6 +42,21 @@ public class TriviaQuestion{
         timer.setRepeats(false);
         timer.setActionCommand("timer");
 	}
+
+	public void addAction(){
+		qFrame.addWindowListener(new WindowAdapter(){
+			@Override
+			public void windowClosed(WindowEvent e){
+				isClosed = true;
+			}
+		});
+	}
+
+	public void close(){
+		if (!isClosed){
+			qFrame.dispatchEvent(new WindowEvent(qFrame, WindowEvent.WINDOW_CLOSING));
+		}
+	}
 	
   	private class ButtonClick implements ActionListener{
         public void actionPerformed(ActionEvent e){
@@ -47,9 +65,11 @@ public class TriviaQuestion{
             	qFrame.remove(qPanel);
             	if (answer){
             		qFrame.add(correct);
+            		ansCorrectly = true;
             	}
             	else{
             		qFrame.add(incorrect);
+            		ansCorrectly = false;
             	}
             	qFrame.setVisible(true);
             	timer.start();
@@ -58,9 +78,11 @@ public class TriviaQuestion{
             	qFrame.remove(qPanel);
             	if (!answer){
             		qFrame.add(correct);
+            		ansCorrectly = true;
             	}
             	else{
             		qFrame.add(incorrect);
+            		ansCorrectly = false;
             	}
             	qFrame.setVisible(true);
             	timer.start();
@@ -69,5 +91,6 @@ public class TriviaQuestion{
             	qFrame.dispatchEvent(new WindowEvent(qFrame, WindowEvent.WINDOW_CLOSING));
             }
 		}
-	}	
+	}
+
 }
