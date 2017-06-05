@@ -18,6 +18,7 @@ public class Page{ //superclass for all the pages
 	public JLabel timeDisplay;
     public ArrayList<TriviaQuestion> bank;
     public JButton co2;
+
 	
 	public Page(){
 		panel = new JPanel(){
@@ -28,8 +29,11 @@ public class Page{ //superclass for all the pages
                 g2.setColor(new Color(25, 150, 200));
                 g2.fillRect(0, 500, 1000, 750);
             }
+            
         };
         co2 = new JButton("CO2");
+        co2.setActionCommand("co2");
+        co2.addActionListener(new ButtonClickListener());
         waterLevel();
         panel.setLayout(new GridLayout(4,4));
 		backButton = new JButton("Back");
@@ -55,7 +59,7 @@ public class Page{ //superclass for all the pages
         
         // displays the trivia questions every 60 seconds
         //Collections.shuffle(bank);
-        qtimer = new Timer(60000, new ActionListener() {
+        qtimer = new Timer(5000, new ActionListener() {
             int i = 0;
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -81,7 +85,9 @@ public class Page{ //superclass for all the pages
 	public class ButtonClickListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
         	String command = e.getActionCommand();
-        	
+            if (command.equals("co2")){
+                waterLevel();
+            }	
 		}
 	}	
 
