@@ -13,16 +13,10 @@ public class Page1 extends Page {
     }
     
     public void info() {
-        infoFrame = new JFrame("President Donald Trump");
-		infoFrame.setSize(1000, 750);
-        infoPanel = new JPanel(new FlowLayout());
+        infoFrame.setTitle("President Donald Trump");
         // make this frame immovable
-        leaderInfo = new JLabel("blah blah blah stuff on Trump");
-        infoPanel.add(leaderInfo);
-        infoPanel.add(playButton);
-        infoFrame.add(infoPanel);
-		infoPanel.add(leaderInfo);
-		infoPanel.add(playButton);
+        leaderInfo.setText("<html><body style='width: 750px'>Donald Trump is at Palm Beach, Florida visiting his Mar-a-Lago resort. The concept of global warming was created by and for the Chinese in order to make U.S. manufacturing non-competitive. Needless to say, it will not be difficult to drown our beloved President. Press play when you are ready to begin!");
+        leaderInfo.setFont(new Font("Serif", Font.PLAIN, 24));
 		infoFrame.setVisible(true);
         infoFrame.setLocationRelativeTo(null);
     }
