@@ -93,6 +93,8 @@ public class Control{ //to navigate between pages
         page.panel.revalidate();
         page.panel.repaint();
         page.co2.setEnabled(true);
+        page.ch4.setEnabled(false);
+        //page.ch4.setEnabled(true);
         mainFrame.setVisible(true);
         page.info();
         Collections.shuffle(page.actions);
@@ -103,7 +105,9 @@ public class Control{ //to navigate between pages
 
     public void remove(Page page){
         page.closeTrivia();
+        page.closeInfo();
         page.resetWater();
+        page.resetCounter();
         page.win.setText("<html><body style='width: 750px'>");
     	mainFrame.remove(page.panel);
     }

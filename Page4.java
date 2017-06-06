@@ -11,6 +11,7 @@ public class Page4 extends Page {
         super();
         super.addImage("merkelllll.jpg");
         setHeader("4: Chancellor Angela Merkel");
+        waterInterval = 5;
         panel.add(win);
         win.setText("<html><body style='width: 750px'>");
         waterInterval = 10;
