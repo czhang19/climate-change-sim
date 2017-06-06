@@ -95,6 +95,7 @@ public class Control{ //to navigate between pages
         page.co2.setEnabled(true);
         mainFrame.setVisible(true);
         page.info();
+        Collections.shuffle(page.actions);
         Collections.shuffle(qbank);
         page.bank = qbank;
     }

@@ -18,12 +18,14 @@ public abstract class Page{ //superclass for all the pages
     public JLabel win;
 	public Timer timer;
     public Timer qtimer;
+    public Timer atimer;
 	public JLabel timeDisplay;
     public JLabel leaderInfo;
     public GridBagConstraints c;
     public ArrayList<TriviaQuestion> bank;
     public int displayed = -1;
     public ArrayList<Boolean> answers;
+    public ArrayList<LeaderAction> actions;
     public JButton co2;
     public int waterLevel;
     public int waterInterval;
@@ -41,8 +43,6 @@ public abstract class Page{ //superclass for all the pages
         infoPanel.add(leaderInfo);
         infoPanel.add(playButton);
         infoFrame.add(infoPanel);
-		infoPanel.add(leaderInfo);
-		infoPanel.add(playButton);
         
         // game page
         waterLevel = 500;
@@ -57,30 +57,16 @@ public abstract class Page{ //superclass for all the pages
             }
 
         };
-        //panel.setLayout(new GridBagLayout());
-        //c = new GridBagConstraints();
         
         // back button to get to home page
 		backButton = new JButton("Back");
 		backButton.setActionCommand("back");
 		backButton.setPreferredSize(new Dimension(75, 30));
-        /*
-        c.weightx = 1.0;
-        c.gridwidth = GridBagConstraints.RELATIVE;
-        //c.gridx = 0;
-        //c.gridy = 0;
-        panel.add(backButton, c);
-        */
         
         // co2 button
         co2 = new JButton("CO2");
         co2.setActionCommand("co2");
         co2.addActionListener(new ButtonClickListener());
-        //c.gridwidth = GridBagConstraints.REMAINDER;
-        //c.weightx = 0.9;
-        //c.gridx = 100;
-        //c.gridy = 0;
-        //panel.add(co2, c);
         
         // stopwatch with current "date"
 		timeDisplay = new JLabel();
@@ -90,14 +76,7 @@ public abstract class Page{ //superclass for all the pages
         cal.add(Calendar.DATE, 1);  // number of days to add
         dt = sdf.format(cal.getTime());
         timeDisplay.setText(sdf.format(cal.getTime()));
-        /*
-        c.fill = GridBagConstraints.BOTH;
-        c.weightx = 0.5;
-        c.gridx = 0;
-        c.gridy = 1;
-        panel.add(timeDisplay, c);
-        */
-
+        
         // displays the "date", currently 10 days in 1 second
        	timer = new Timer(100, new ActionListener() {
             @Override
@@ -108,20 +87,40 @@ public abstract class Page{ //superclass for all the pages
             }
         });
         
-        // displays the trivia questions every 60 seconds
-        qtimer = new Timer(5000, new ActionListener() {
+        // displays the trivia questions every 30 seconds
+        qtimer = new Timer(30000, new ActionListener() {
             int i = 0;
             @Override
             public void actionPerformed(ActionEvent e) {
-                TriviaQuestion test = bank.get(i);
-                test.displayQuestion();
+                bank.get(i).displayQuestion();
                 displayed = i;
-                i++;
+                if (i == bank.size() - 1) {
+                    i = 0;
+                } else {
+                    i++;
+                }
+            }
+        });
+        
+        // displays actions at fixed intervals
+        atimer = new Timer(25000, new ActionListener() {
+            int i = 0;
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                actions.get(i).display();
+                waterLevelAction(actions.get(i));
+                if (i == actions.size() - 1) {
+                    i = 0;
+                } else {
+                    i++;
+                }
             }
         });
         
         // Congratulations text box
         win = new JLabel();
+        
+        actions = new ArrayList<LeaderAction>();
         
 		panel.add(backButton);
         panel.add(co2);
@@ -135,14 +134,6 @@ public abstract class Page{ //superclass for all the pages
         JLabel label = new JLabel(imageicon);
         label.setHorizontalAlignment(JLabel.RIGHT);
         label.setVerticalAlignment(JLabel.TOP);
-        /*
-        c.fill = GridBagConstraints.BOTH;
-        c.ipady = 40;      //make this component tall
-        c.weightx = 0.0;
-        c.gridwidth = 3;
-        c.gridx = 0;
-        c.gridy = 2;
-        //panel.add(label, c); */
         panel.add(label);
 	}
 
@@ -166,11 +157,24 @@ public abstract class Page{ //superclass for all the pages
 
     public void waterLevelRising(){
         waterLevel -= waterInterval;
-        if (waterLevel == 50) {
+        if (waterLevel <= 50) {
             co2.setEnabled(false);
             win();
             timer.stop();
             qtimer.stop();
+            atimer.stop();
+        }
+        panel.repaint();
+    }
+    
+    public void waterLevelAction(LeaderAction act) {
+        waterLevel += act.x;
+        if (waterLevel <= 50) {
+            co2.setEnabled(false);
+            win();
+            timer.stop();
+            qtimer.stop();
+            atimer.stop();
         }
         panel.repaint();
     }
@@ -189,6 +193,7 @@ public abstract class Page{ //superclass for all the pages
             	infoFrame.dispatchEvent(new WindowEvent(infoFrame, WindowEvent.WINDOW_CLOSING));
                 timer.start();
                 qtimer.start();
+                atimer.start();
             } 
 		}
 	}	
