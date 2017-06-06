@@ -70,20 +70,15 @@ public class TriviaQuestion{
 		}
 	}
 
-	public void setAnsCorrectly(boolean bool){
-		ansCorrectly = bool;
-	}
-	
+
   	private class ButtonClick implements ActionListener{
         public void actionPerformed(ActionEvent e){
             String command = e.getActionCommand();
             if (command.equals("true")){
-            	System.out.println("should be first");
             	qFrame.remove(qPanel);
             	if (answer){
             		qFrame.add(correct);
             		ansCorrectly = true;
-            		//setAnsCorrectly(true);
             	}
             	else{
             		qFrame.add(incorrect);
@@ -97,7 +92,6 @@ public class TriviaQuestion{
             	if (!answer){
             		qFrame.add(correct);
             		ansCorrectly = true;
-            		//setAnsCorrectly(true);
             	}
             	else{
             		qFrame.add(incorrect);

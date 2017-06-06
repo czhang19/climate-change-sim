@@ -29,6 +29,12 @@ public abstract class Page{ //superclass for all the pages
     public JButton ch4;
     public int waterLevel;
     public int waterInterval;
+    public JLabel triviaCounter;
+    public int triviaGoal;
+    public int[] xPointsOne = {100, 120, 150, 120}; 
+    public int[] yPointsOne = {90, 10, 5, 110};
+    public int[] xPointsTwo = {10, 80, 90, 5};
+    public int[] yPointsTwo = {110, 120, 140, 130};
 
 	
 	public Page(){
@@ -56,6 +62,11 @@ public abstract class Page{ //superclass for all the pages
                 Graphics2D g2 = (Graphics2D)g;
                 g2.setColor(new Color(25, 150, 200));
                 g2.fillRect(0, waterLevel, 1000, 750-waterLevel);
+                g2.setColor(new Color(250, 215, 66));
+                g2.fillOval(10, 10, 70, 70);
+                g2.setColor(new Color(40, 50, 60));
+                g2.fillPolygon(xPointsOne, yPointsOne, 4);
+                g2.fillPolygon(xPointsTwo, yPointsTwo, 4);
             }
 
         };
@@ -205,6 +216,8 @@ public abstract class Page{ //superclass for all the pages
         }
         panel.repaint();
     }
+
+
 
 	public void resetWater(){
         waterLevel = 500;
