@@ -7,6 +7,10 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.ArrayList;
+import java.io.File;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 
 public abstract class Page{ //superclass for all the pages
     public JButton backButton;
@@ -145,6 +149,18 @@ public abstract class Page{ //superclass for all the pages
         panel.add(co2);
         panel.add(ch4);
         panel.add(timeDisplay);
+
+    }
+
+    public void buttonSound(String track) {
+        try {
+            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(track).getAbsoluteFile());
+            Clip clip = AudioSystem.getClip();
+            clip.open(audioInputStream);
+            clip.start();
+        } catch(Exception a) {
+            a.printStackTrace();
+        }
     }
 
     public void addImage(String filename) {
@@ -236,6 +252,7 @@ public abstract class Page{ //superclass for all the pages
             String command = e.getActionCommand();
             if (command.equals("co2")){
                 waterLevelRising();
+                buttonSound("Honk.wav");
             }    
             else if (command.equals("play")){
                 infoFrame.dispatchEvent(new WindowEvent(infoFrame, WindowEvent.WINDOW_CLOSING));
