@@ -37,7 +37,8 @@ public abstract class Page{ //superclass for all the pages
     public int[] yPointsOne = {90, 10, 5, 110};
     public int[] xPointsTwo = {10, 80, 90, 5};
     public int[] yPointsTwo = {110, 120, 140, 130};
-
+    public Calendar cal;
+    public SimpleDateFormat sdf;
     
     public Page(){
         // information page for each leader
@@ -88,11 +89,8 @@ public abstract class Page{ //superclass for all the pages
         
         // stopwatch with current "date"
         timeDisplay = new JLabel();
-        String dt = new SimpleDateFormat("EEE, d MMM yyyy").format(new Date()); // starts date as today
-        SimpleDateFormat sdf = new SimpleDateFormat("EEE, d MMM yyyy");
-        Calendar cal = Calendar.getInstance();
-        cal.add(Calendar.DATE, 1);  // number of days to add
-        dt = sdf.format(cal.getTime());
+        sdf = new SimpleDateFormat("EEE, d MMM yyyy");
+        cal = Calendar.getInstance();
         timeDisplay.setText(sdf.format(cal.getTime()));
         
         // displays the "date", currently 10 days in 1 second
@@ -106,7 +104,7 @@ public abstract class Page{ //superclass for all the pages
         });
         
         // displays actions at fixed intervals
-        atimer = new Timer(25000, new ActionListener() {
+        atimer = new Timer(5000, new ActionListener() {
             int i = 0;
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -122,7 +120,7 @@ public abstract class Page{ //superclass for all the pages
 
         // displays the trivia questions every 30 seconds
         answers = new ArrayList<Boolean>();
-        qtimer = new Timer(30000, new ActionListener() {
+        qtimer = new Timer(10000, new ActionListener() {
             int i = 0;
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -223,7 +221,11 @@ public abstract class Page{ //superclass for all the pages
         panel.repaint();
     }
 
-
+    public void stopTimer() {
+        timer.stop();
+        atimer.stop();
+        qtimer.stop();
+    }
 
     public void resetWater(){
         waterLevel = 500;
@@ -237,9 +239,11 @@ public abstract class Page{ //superclass for all the pages
             }    
             else if (command.equals("play")){
                 infoFrame.dispatchEvent(new WindowEvent(infoFrame, WindowEvent.WINDOW_CLOSING));
-                timer.start();
-                qtimer.start();
-                atimer.start();
+                cal = Calendar.getInstance();
+                timeDisplay.setText(sdf.format(cal.getTime()));
+                timer.restart();
+                qtimer.restart();
+                atimer.restart();
             } 
             else if (command.equals("ch4")){
                 waterLevel -= (3*waterInterval);
