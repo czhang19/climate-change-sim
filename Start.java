@@ -17,9 +17,7 @@ public class Start {
         intro.setFont(new Font("Serif", Font.PLAIN, 48));
         startButton = new JButton("Start");
         startButton.setActionCommand("start"); //set action command
-        //startButton.addActionListener(new ButtonClickListener());
         startButton.setPreferredSize(new Dimension(75, 30));
-        //mainFrame.add(start);
         panel.add(intro);
         panel.add(startButton);
 	}

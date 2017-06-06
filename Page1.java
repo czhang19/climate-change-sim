@@ -13,6 +13,8 @@ public class Page1 extends Page {
         setHeader("1: President Donald Trump");
         panel.add(win);
         win.setText("<html><body style='width: 750px'>");
+        waterInterval = 50;
+        level1Page();
     }
     
     public void info() {
@@ -30,6 +32,8 @@ public class Page1 extends Page {
     }
     
     public void level1Page() {
-        
+        actions.add(new LeaderAction("President Trump has halted Obama's Clean Power Plan (CPP), which restricts emissions from coal-fired power plants. 50 coal factories are re-opened", -50));
+        actions.add(new LeaderAction("Trump pulls out of the Paris climate accord!", -50));
+        actions.add(new LeaderAction("Trump nominates Scott Pruitt to head the EPA!", -50));
     }
 }
