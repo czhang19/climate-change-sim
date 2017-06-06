@@ -117,6 +117,8 @@ public abstract class Page{ //superclass for all the pages
                 } else {
                     i++;
                 }
+            }
+        });
 
         // displays the trivia questions every 30 seconds
         answers = new ArrayList<Boolean>();
