@@ -270,6 +270,8 @@ public abstract class Page{ //superclass for all the pages
         win();
         closeTrivia();
         closeLevelAction();
+        co2.setEnabled(false);
+        ch4.setEnabled(false);
         timer.stop();
         qtimer.stop();
         atimer.stop();
