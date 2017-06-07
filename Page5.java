@@ -10,11 +10,10 @@ public class Page5 extends Page {
     public Page5() {
         super();
         super.addImage("bruckerrrrr.jpg");
-        setHeader("5: King Bruck");
         waterInterval = 1;
+        setHeader("5: King Bruck");
         panel.add(win);
         win.setText("<html><body style='width: 750px'>");
-        waterInterval = 1;
         level5Page();
         triviaGoal = 10;
     }
@@ -25,6 +24,11 @@ public class Page5 extends Page {
         leaderInfo.setFont(new Font("Zapfino", Font.PLAIN, 24));
 		infoFrame.setVisible(true);
         infoFrame.setLocationRelativeTo(null);
+    }
+    
+    public void lose() {
+        win.setText("<html><body style='width: 750px'>King Bruck always wins.");
+        panel.repaint();
     }
     
     public void win() {

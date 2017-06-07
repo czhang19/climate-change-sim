@@ -10,12 +10,10 @@ public class Page3 extends Page {
     public Page3() {
         super();
         super.addImage("trudeauuuuu.jpg");
-        setHeader("3: Justin Trudeau");
-        waterInterval = 10;
         setHeader("3: Prime Minister Justin Trudeau");
         panel.add(win);
         win.setText("<html><body style='width: 750px'>");
-        waterInterval = 15;
+        waterInterval = 5;
         level3Page();
         triviaGoal = 5;
     }
@@ -29,8 +27,13 @@ public class Page3 extends Page {
         infoFrame.setLocationRelativeTo(null);
     }
     
+    public void lose() {
+        win.setText("<html><body style='width: 750px'>I guess Trudeau wins.");
+        panel.repaint();
+    }
+    
     public void win() {
-        win.setText("<html><body style='width: 750px'>Congratulations! You have succeeded in drowning Prime Minister Justin Trudeau in Ottawa, Canada by increasing CO2 levels sufficiently enough to rise sea levels! Click back to return to the home page and attempt Level 4.");
+        win.setText("<html><body style='width: 750px'>Congratulations! You have succeeded in eliminating Prime Minister Justin Trudeau in Ottawa, Canada! Click back to return to the home page and attempt Level 4.");
         panel.repaint();
     }
     
