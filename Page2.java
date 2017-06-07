@@ -7,6 +7,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class Page2 extends Page {
+    
     public Page2() {
         super();
         super.addImage("putinnnnn.jpg");
@@ -15,6 +16,8 @@ public class Page2 extends Page {
         win.setText("<html><body style='width: 750px'>");
         waterInterval = 10;
         level2Page();
+        triviaGoal = 3;
+        setQuestionLabel();
     }
     
     public void info() {
@@ -37,7 +40,7 @@ public class Page2 extends Page {
     }
     
     public void level2Page() {
-        actions.add(new LeaderAction("\"Don’t worry, be happy\" says Putin with regards to Trump’s climate policies.", -30));
+        actions.add(new LeaderAction("\"Don't worry, be happy\" says Putin with regards to Trump’s climate policies.", -30));
         actions.add(new LeaderAction("Russia is the fourth largest greenhouse gas polluter.", -30));
         actions.add(new LeaderAction("Discovered in a survey, Russians had the lowest level of concern about global warming out of every country but Ukraine.", -20));
         actions.add(new LeaderAction("President Putin actively contributes to address the issue of global warming.", 20));

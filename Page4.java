@@ -15,6 +15,8 @@ public class Page4 extends Page {
         win.setText("<html><body style='width: 750px'>");
         waterInterval = 3;
         level4Page();
+        triviaGoal = 7;
+        setQuestionLabel();
     }
     
     public void info() {

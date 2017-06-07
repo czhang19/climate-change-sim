@@ -15,6 +15,7 @@ public class Page1 extends Page {
         win.setText("<html><body style='width: 750px'>");
         waterInterval = 20;
         level1Page();
+        setQuestionLabel();
     }
     
     public void info() {
