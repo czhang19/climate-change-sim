@@ -63,7 +63,7 @@ public class Control{ //to navigate between pages
         while (input.hasNextLine()) {
             html1 = "<html><body style='width: "; 
             html2 = "px'>";
-            question = html1+ "300" + html2 + input.next(); // sets width to fit jframe
+            question = html1+ "275" + html2 + input.next(); // sets width to fit jframe
             answer = input.next();
             qbank.add(new TriviaQuestion(question, answer));
         }

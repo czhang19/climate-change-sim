@@ -44,6 +44,6 @@ public class Page4 extends Page {
         actions.add(new LeaderAction("Angela Merkel pledges money to the Green Climate Fund!", 40));
         actions.add(new LeaderAction("Angela Merkel pledges Germany to cut greenhouse gas emissions 80% by 2050.", 40));
         actions.add(new LeaderAction("Angela Merkel creates hundreds of thousands of new jobs in the energy sector!", 40));
-        actions.add(new LeaderAction("Angela Merkel says it was ‘right’ to confront Donald Trump over climate change.", 40));
+        actions.add(new LeaderAction("Angela Merkel says it was 'right' to confront Donald Trump over climate change.", 40));
     }
 }

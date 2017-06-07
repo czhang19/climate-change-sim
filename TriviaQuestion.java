@@ -14,8 +14,8 @@ public class TriviaQuestion{
 	Timer timer;
 	boolean ansCorrectly;
 	boolean isClosed = true;
-	JLabel correct = new JLabel("Correct!");
-	JLabel incorrect = new JLabel("Incorrect :(");
+	JLabel correct = new JLabel("<html><body style='width: 250px'>Correct!");
+	JLabel incorrect = new JLabel("<html><body style='width: 250px'>Incorrect :(");
 	JButton answered;
 
 	public TriviaQuestion(String question, String answer){

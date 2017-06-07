@@ -12,7 +12,7 @@ public class LeaderAction {
     boolean isClosed = true;
     
     public LeaderAction(String text, int x) {
-        this.text = "<html><body style='width: 300px'>" + text;
+        this.text = "<html><body style='width: 275px'>" + text;
         this.x = x;
     }
     

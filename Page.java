@@ -137,17 +137,16 @@ public abstract class Page{ //superclass for all the pages
         // displays the trivia questions every 7 seconds
         answers = new ArrayList<Boolean>();
         qtimer = new Timer(7000, new ActionListener() {
-            int i = 0;
             @Override
             public void actionPerformed(ActionEvent e) {
-                bank.get(i).displayQuestion();
-                displayed = i+1;
+                bank.get(displayed).displayQuestion(); 
                 answers.add(Boolean.FALSE);
-                bank.get(i).answered.addActionListener(new ButtonClickListener());
-                if (i == bank.size() - 1) {
-                    i = 0;
-                } else {
-                    i++;
+                bank.get(displayed).answered.addActionListener(new ButtonClickListener()); 
+                if (displayed == bank.size() - 1){
+                    displayed = 0;
+                }
+                else {
+                    displayed++;
                 }
             }
         });
@@ -163,6 +162,7 @@ public abstract class Page{ //superclass for all the pages
         panel.add(timeDisplay);
 
     }
+
 
     public void setQuestionLabel(){
         JLabel buffer = new JLabel("<html><body style='width: 295px'>");
@@ -333,6 +333,7 @@ public abstract class Page{ //superclass for all the pages
         } 
         
         if (waterLevel <= 50) {
+            ch4.setEnabled(false);
             co2.setEnabled(false);
             win();
             closeTrivia();
@@ -349,9 +350,11 @@ public abstract class Page{ //superclass for all the pages
         buttonSound("Wave.wav");
 
         if (waterLevel <= 50 || waterLevel >= 750) {
+            ch4.setEnabled(false);
             co2.setEnabled(false);
             if (waterLevel <= 50) {
                 win();
+
             } else {
                 lose();
             }
@@ -396,7 +399,7 @@ public abstract class Page{ //superclass for all the pages
                 panel.repaint();
             } 
             else if (command.equals("answered")){
-                for (int i = 0; i <= answers.size(); i++){
+                for (int i = 0; i < answers.size(); i++){
                     if (bank.get(i).ansCorrectly){
                         answers.set(i, Boolean.TRUE);
                     }
