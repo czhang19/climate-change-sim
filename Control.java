@@ -90,14 +90,9 @@ public class Control{ //to navigate between pages
 
     public void display(Page page){
         page.panel.add(page.timeDisplay);
-        //mainFrame.add(page.solarPanel);
         mainFrame.add(page.panel);
-       // mainFrame.add(page.solarPanel);
         page.panel.revalidate();
         page.panel.repaint();
-        page.co2.setEnabled(true);
-        page.ch4.setEnabled(false);
-        //page.ch4.setEnabled(true);
         mainFrame.setVisible(true);
         page.info();
         Collections.shuffle(page.actions);

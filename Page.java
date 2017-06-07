@@ -96,6 +96,7 @@ public abstract class Page{ //superclass for all the pages
         co2 = new JButton("CO2");
         co2.setActionCommand("co2");
         co2.addActionListener(new ButtonClickListener());
+
         
         // ch4 button
         ch4 = new JButton("CH4");
@@ -158,7 +159,9 @@ public abstract class Page{ //superclass for all the pages
         
         panel.add(backButton);
         panel.add(co2);
+        co2.setEnabled(false);
         panel.add(ch4);
+        ch4.setEnabled(false);
         panel.add(timeDisplay);
 
     }
@@ -391,6 +394,7 @@ public abstract class Page{ //superclass for all the pages
                 timer.restart();
                 qtimer.restart();
                 atimer.restart();
+                //co2.setEnabled(true);
             } 
             else if (command.equals("ch4")){
                 waterLevel -= (3*waterInterval);
