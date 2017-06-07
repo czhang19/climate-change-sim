@@ -10,12 +10,10 @@ public class Page3 extends Page {
     public Page3() {
         super();
         super.addImage("trudeauuuuu.jpg");
-        setHeader("3: Justin Trudeau");
-        waterInterval = 10;
         setHeader("3: Prime Minister Justin Trudeau");
         panel.add(win);
         win.setText("<html><body style='width: 750px'>");
-        waterInterval = 15;
+        waterInterval = 10;
         level3Page();
     }
     
@@ -26,6 +24,11 @@ public class Page3 extends Page {
         leaderInfo.setFont(new Font("Serif", Font.PLAIN, 24));
 		infoFrame.setVisible(true);
         infoFrame.setLocationRelativeTo(null);
+    }
+    
+    public void lose() {
+        win.setText("<html><body style='width: 750px'>I guess Trudeau wins.");
+        panel.repaint();
     }
     
     public void win() {

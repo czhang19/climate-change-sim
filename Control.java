@@ -107,6 +107,7 @@ public class Control{ //to navigate between pages
     public void remove(Page page){  
         page.stopTimer();
         page.closeTrivia();
+        page.closeLevelAction();
         page.closeInfo();
         page.resetWater();
         page.resetCounter();

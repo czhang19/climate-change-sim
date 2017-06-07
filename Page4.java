@@ -11,10 +11,9 @@ public class Page4 extends Page {
         super();
         super.addImage("merkelllll.jpg");
         setHeader("4: Chancellor Angela Merkel");
-        waterInterval = 5;
         panel.add(win);
         win.setText("<html><body style='width: 750px'>");
-        waterInterval = 10;
+        waterInterval = 3;
         level4Page();
     }
     
@@ -25,6 +24,11 @@ public class Page4 extends Page {
         leaderInfo.setFont(new Font("Serif", Font.PLAIN, 24));
 		infoFrame.setVisible(true);
         infoFrame.setLocationRelativeTo(null);
+    }
+    
+    public void lose() {
+        win.setText("<html><body style='width: 750px'>You lost.");
+        panel.repaint();
     }
     
     public void win() {

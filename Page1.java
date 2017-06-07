@@ -13,7 +13,7 @@ public class Page1 extends Page {
         setHeader("1: President Donald Trump");
         panel.add(win);
         win.setText("<html><body style='width: 750px'>");
-        waterInterval = 50;
+        waterInterval = 25;
         level1Page();
     }
     
@@ -24,6 +24,11 @@ public class Page1 extends Page {
         leaderInfo.setFont(new Font("Serif", Font.PLAIN, 24));
 		infoFrame.setVisible(true);
         infoFrame.setLocationRelativeTo(null);
+    }
+    
+    public void lose() {
+        win.setText("<html><body style='width: 750px'>How did you lose to Trump?");
+        panel.repaint();
     }
     
     public void win() {
