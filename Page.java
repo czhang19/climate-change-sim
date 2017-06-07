@@ -123,7 +123,7 @@ public abstract class Page{ //superclass for all the pages
             }
         });
 
-        // displays the trivia questions every 30 seconds
+        // displays the trivia questions every 7 seconds
         answers = new ArrayList<Boolean>();
         qtimer = new Timer(12000, new ActionListener() {
             int i = 0;
@@ -272,6 +272,7 @@ public abstract class Page{ //superclass for all the pages
     
     public void waterLevelAction(LeaderAction act) {
         waterLevel += act.x;
+        buttonSound("Splash.wav");
 
         if (waterLevel <= 50 || waterLevel >= 750) {
             co2.setEnabled(false);
@@ -304,7 +305,7 @@ public abstract class Page{ //superclass for all the pages
             String command = e.getActionCommand();
             if (command.equals("co2")){
                 waterLevelRising();
-                buttonSound("Honk.wav");
+                buttonSound("Horn.wav");
             }    
             else if (command.equals("play")){
                 infoFrame.dispatchEvent(new WindowEvent(infoFrame, WindowEvent.WINDOW_CLOSING));
@@ -316,6 +317,7 @@ public abstract class Page{ //superclass for all the pages
             } 
             else if (command.equals("ch4")){
                 waterLevel -= (3*waterInterval);
+                buttonSound("Cow.wav");
                 ch4.setEnabled(false);
                 panel.repaint();
             } 
