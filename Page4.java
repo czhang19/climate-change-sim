@@ -16,6 +16,7 @@ public class Page4 extends Page {
         waterInterval = 3;
         level4Page();
         triviaGoal = 7;
+        setQuestionLabel();
     }
     
     public void info() {

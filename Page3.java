@@ -7,6 +7,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class Page3 extends Page {
+
     public Page3() {
         super();
         super.addImage("trudeauuuuu.jpg");
@@ -16,6 +17,7 @@ public class Page3 extends Page {
         waterInterval = 5;
         level3Page();
         triviaGoal = 5;
+        setQuestionLabel();
     }
     
     public void info() {

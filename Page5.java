@@ -16,6 +16,7 @@ public class Page5 extends Page {
         win.setText("<html><body style='width: 750px'>");
         level5Page();
         triviaGoal = 10;
+        setQuestionLabel();
     }
     
     public void info() {

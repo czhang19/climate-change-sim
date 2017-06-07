@@ -7,6 +7,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class Page2 extends Page {
+    
     public Page2() {
         super();
         super.addImage("putinnnnn.jpg");
@@ -15,6 +16,8 @@ public class Page2 extends Page {
         win.setText("<html><body style='width: 750px'>");
         waterInterval = 10;
         level2Page();
+        triviaGoal = 3;
+        setQuestionLabel();
     }
     
     public void info() {
@@ -24,7 +27,6 @@ public class Page2 extends Page {
         leaderInfo.setFont(new Font("Serif", Font.PLAIN, 24));
 		infoFrame.setVisible(true);
         infoFrame.setLocationRelativeTo(null);
-        triviaGoal = 3;
     }
     
     public void lose() {

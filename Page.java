@@ -32,6 +32,7 @@ public abstract class Page{ //superclass for all the pages
     public ArrayList<Boolean> answers;
     public ArrayList<LeaderAction> actions;
     public int qCounter = 0;
+    public JLabel qCount;
     public JButton co2;
     public JButton ch4;
     public int waterLevel;
@@ -59,6 +60,7 @@ public abstract class Page{ //superclass for all the pages
         infoPanel.add(leaderInfo);
         infoPanel.add(playButton);
         infoFrame.add(infoPanel);
+        
 
         // game page
         waterLevel = 500;
@@ -134,7 +136,7 @@ public abstract class Page{ //superclass for all the pages
 
         // displays the trivia questions every 30 seconds
         answers = new ArrayList<Boolean>();
-        qtimer = new Timer(12000, new ActionListener() {
+        qtimer = new Timer(7000, new ActionListener() {
             int i = 0;
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -160,6 +162,18 @@ public abstract class Page{ //superclass for all the pages
         panel.add(ch4);
         panel.add(timeDisplay);
 
+    }
+
+    public void setQuestionLabel(){
+        JLabel buffer = new JLabel("<html><body style='width: 295px'>");
+        panel.add(buffer);
+        qCount = new JLabel("<html><body style='width: 455px'>0/" + triviaGoal + " questions answered correctly", JLabel.CENTER);
+        qCount.setVerticalAlignment(JLabel.BOTTOM); 
+        panel.add(qCount);
+    }
+
+    public void resetQuestionLabel(){
+        qCount.setText("<html><body style='width: 455px'>" + qCounter + "/" + triviaGoal + " questions answered correctly");
     }
 
     public void buttonSound(String track) {
@@ -202,6 +216,7 @@ public abstract class Page{ //superclass for all the pages
         }
         qCounter = counter;
         checkCounter();
+        resetQuestionLabel();
     }
 
     public void checkCounter(){
@@ -253,6 +268,11 @@ public abstract class Page{ //superclass for all the pages
         });
         panelTimer.start();
         win();
+        closeTrivia();
+        closeLevelAction();
+        timer.stop();
+        qtimer.stop();
+        atimer.stop();
     }
 
     public int[] doubleToInt(double[] doubleArray){
@@ -267,6 +287,24 @@ public abstract class Page{ //superclass for all the pages
         qCounter = 0;
         answers.clear();
         displayed = 0;
+        rayVisible = false;
+        xPointsOne[0] = 110;
+        xPointsOne[1] = 130;
+        xPointsOne[2] = 160;
+        xPointsOne[3] = 130; 
+        yPointsOne[0] = 90;
+        yPointsOne[1] = 10;
+        yPointsOne[2] = 5;
+        yPointsOne[3] = 110;
+        xPointsTwo[0] = 15;
+        xPointsTwo[1] = 100;
+        xPointsTwo[2] = 120;
+        xPointsTwo[3] = 5;
+        yPointsTwo[0] = 120;
+        yPointsTwo[1] = 110;
+        yPointsTwo[2] = 130;
+        yPointsTwo[3] = 145;
+        resetQuestionLabel();
     }
     
     public abstract void info();
@@ -278,6 +316,8 @@ public abstract class Page{ //superclass for all the pages
     public abstract void win();
     
     public abstract void lose();
+
+
     
     public void setHeader(String s){
         header = new JLabel("Level " + s, JLabel.CENTER);
