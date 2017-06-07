@@ -13,7 +13,7 @@ public class TriviaQuestion{
     JButton falseButton;
 	Timer timer;
 	boolean ansCorrectly;
-	boolean isClosed = false;
+	boolean isClosed = true;
 	JLabel correct = new JLabel("Correct!");
 	JLabel incorrect = new JLabel("Incorrect :(");
 	JButton answered;
@@ -48,6 +48,7 @@ public class TriviaQuestion{
         timer.setRepeats(false);
         timer.setActionCommand("timer");
        	trackAnswered();
+       	isClosed = false;
 	}
 
 	public void trackAnswered(){

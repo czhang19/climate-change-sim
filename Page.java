@@ -17,7 +17,6 @@ public abstract class Page{ //superclass for all the pages
     public JButton playButton;
     public JFrame infoFrame;
 	public JPanel panel;
-    public JComponent solarPanel;
     public JPanel infoPanel;
     public JLabel header;
     public JLabel win;
@@ -41,10 +40,11 @@ public abstract class Page{ //superclass for all the pages
     public int[] xPointsOne = {110, 130, 160, 130}; 
     public int[] yPointsOne = {90, 10, 5, 110};
     public int[] xPointsTwo = {15, 100, 120, 5};
-    public int[] yPointsTwo = {110, 100, 120, 135};
+    public int[] yPointsTwo = {120, 110, 130, 145};
     public Timer panelTimer;
     public Calendar cal;
     public SimpleDateFormat sdf;
+    public boolean rayVisible = false;
     
     public Page(){
         // information page for each leader
@@ -58,13 +58,6 @@ public abstract class Page{ //superclass for all the pages
         infoPanel.add(leaderInfo);
         infoPanel.add(playButton);
         infoFrame.add(infoPanel);
-        // solarPanel = new DrawArea();
-        // solarPanel.setSize(150, 150);
-        // solarPanel.setBackground(new Color(0, 0, 0, 0));
-        //solarPanel.setUndecorated(true);
-        // solarPanel.setOpaque(false);
-        // solarPanel.setLayout(null);
-        // solarPanel.repaint();
 
 
         // game page
@@ -79,11 +72,15 @@ public abstract class Page{ //superclass for all the pages
                 g2.fillRect(0, waterLevel, 1000, 750-waterLevel);
                 g2.setColor(new Color(250, 215, 66));
                 g2.fillOval(15, 10, 70, 70);
-                // g2.setColor(new Color(120, 150, 180));
-                // g2.rotate((2*Math.PI) - angle);
-                // g2.fillPolygon(xPointsOne, yPointsOne, 4);
-                // g2.rotate(2*angle);
-                // g2.fillPolygon(xPointsTwo, yPointsTwo, 4);
+                g2.setColor(new Color(120, 150, 180));
+                g2.fillPolygon(xPointsOne, yPointsOne, 4);
+                g2.fillPolygon(xPointsTwo, yPointsTwo, 4);
+                if (rayVisible){
+                    g2.setColor(new Color(250, 100, 60));
+                    g2.drawLine(50, 45, 135, 50);
+                    g2.drawLine(135, 50, 65, 127);
+                    g2.drawLine(65, 127, 500, 75);
+                }
             }
 
         };
@@ -203,7 +200,6 @@ public abstract class Page{ //superclass for all the pages
             }
         }
         qCounter = counter;
-        System.out.println(qCounter);
         checkCounter();
     }
 
@@ -214,32 +210,56 @@ public abstract class Page{ //superclass for all the pages
     }
 
     public void turnPanels(){
-        // double[][] translateFirstArrayOne = {{1, 0, 135}, {0, 1, 50}, {0, 0, 1}};
-        // double[][] rotateArrayOne = {{Math.cos(0.1), -Math.sin(0.1), 0}, {Math.sin(0.1), Math.cos(0.1), 0}, {0, 0, 1}};
-        // double[][] translateSecondArrayOne = {{1, 0, -135}, {0, 1, -50}, {0, 0, 1}};
-        // double[][] pointsOneArray = {xPointsOne, yPointsTwo, {1, 1, 1}};
-        // Matrix rotateOne = new Matrix(rotateArrayOne);
-        // Matrix translateFirstOne = new Matrix(translateFirstArrayOne);
-        // Matrix translateSecondOne = new Matrix(translateSecondArrayOne);
-        // Matrix pointsOne = new Matrix(pointsOneArray);
-        // panelTimer = new Timer(500, new ActionListener(){
-        //     int i = 0;
-        //     @Override
-        //     public void actionPerformed(ActionEvent e){
-                
-        //         xPointsOne = pointsOne.returnRow(1);
-        //         yPointsOne = pointsOne.returnRow(2);
-        //         panel.repaint();
-        //         i++;
-        //         if (i == 5){
-        //             panelTimer.stop();
-        //         }
+        panelTimer = new Timer(250, new ActionListener(){
+            int i = 0;
+            @Override
+            public void actionPerformed(ActionEvent e){
+                double[][] translateFirstArrayOne = {{1, 0, 135}, {0, 1, 50}, {0, 0, 1}};
+                double[][] rotateArrayOne = {{Math.cos(-0.1), -Math.sin(-0.1), 0}, {Math.sin(-0.1), Math.cos(-0.1), 0}, {0, 0, 1}};
+                double[][] translateSecondArrayOne = {{1, 0, -135}, {0, 1, -50}, {0, 0, 1}};
+                double[][] pointsOneArray = {{xPointsOne[0], xPointsOne[1], xPointsOne[2], xPointsOne[3]}, {yPointsOne[0], yPointsOne[1], yPointsOne[2], yPointsOne[3]}, {1, 1, 1, 1}};
+                Matrix rotateOne = new Matrix(rotateArrayOne);
+                Matrix translateFirstOne = new Matrix(translateFirstArrayOne);
+                Matrix translateSecondOne = new Matrix(translateSecondArrayOne);
+                Matrix pointsOne = new Matrix(pointsOneArray);
+                double[][] translateFirstArrayTwo = {{1, 0, 65}, {0, 1, 127}, {0, 0, 1}};
+                double[][] rotateArrayTwo = {{Math.cos(0.1), -Math.sin(0.1), 0}, {Math.sin(0.1), Math.cos(0.1), 0}, {0, 0, 1}};
+                double[][] translateSecondArrayTwo = {{1, 0, -65}, {0, 1, -125}, {0, 0, 1}};
+                double[][] pointsTwoArray = {{xPointsTwo[0], xPointsTwo[1], xPointsTwo[2], xPointsTwo[3]}, {yPointsTwo[0], yPointsTwo[1], yPointsTwo[2], yPointsTwo[3]}, {1, 1, 1, 1}};
+                Matrix rotateTwo = new Matrix(rotateArrayTwo);
+                Matrix translateFirstTwo = new Matrix(translateFirstArrayTwo);
+                Matrix translateSecondTwo = new Matrix(translateSecondArrayTwo);
+                Matrix pointsTwo = new Matrix(pointsTwoArray);
+                pointsOne = translateSecondOne.times(pointsOne);
+                pointsOne = rotateOne.times(pointsOne);
+                pointsOne = translateFirstOne.times(pointsOne);
+                xPointsOne = doubleToInt(pointsOne.returnRow(1));
+                yPointsOne = doubleToInt(pointsOne.returnRow(2));
+                pointsTwo = translateSecondTwo.times(pointsTwo);
+                pointsTwo = rotateTwo.times(pointsTwo);
+                pointsTwo = translateFirstTwo.times(pointsTwo);
+                xPointsTwo = doubleToInt(pointsTwo.returnRow(1));
+                yPointsTwo = doubleToInt(pointsTwo.returnRow(2));
+                panel.repaint();
+                i++;
+                if (i == 10){
+                    panelTimer.stop();
+                    rayVisible = true;
+                    panel.repaint();
+                }
 
-        //     }
-        // });
-        // panelTimer.start();
-        // win();
-        // //solarPanel.repaint();
+            }
+        });
+        panelTimer.start();
+        win();
+    }
+
+    public int[] doubleToInt(double[] doubleArray){
+        int[] result = new int[doubleArray.length];
+        for (int i = 0; i < doubleArray.length; i++){
+            result[i] = (int)Math.round(doubleArray[i]);
+        }
+        return result;
     }
 
     public void resetCounter(){
@@ -329,20 +349,4 @@ public abstract class Page{ //superclass for all the pages
 
 		}
 	}
-    // public class DrawArea extends JComponent{
-    //     @Override
-    //     public void paintComponent(Graphics g){
-    //         super.paintComponent(g);
-    //         //setOpaque(false);
-    //         System.out.println("marker");
-    //         Graphics2D g2 = (Graphics2D)g;
-    //         g2.setColor(new Color(120, 150, 180));
-    //         g2.rotate((2*Math.PI) - angle);
-    //         g2.fillPolygon(xPointsOne, yPointsOne, 4);
-    //         g2.rotate(2*angle);
-    //         g2.fillPolygon(xPointsTwo, yPointsTwo, 4);
-
-    //     }
-
-
 }
