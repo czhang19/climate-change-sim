@@ -25,6 +25,7 @@ public class Page1 extends Page {
         leaderInfo.setFont(new Font("Serif", Font.PLAIN, 24));
 		infoFrame.setVisible(true);
         infoFrame.setLocationRelativeTo(null);
+        infoFrame.setAlwaysOnTop(true);
     }
     
     public void lose() {
