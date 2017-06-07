@@ -14,7 +14,6 @@ public class Page4 extends Page {
         waterInterval = 5;
         panel.add(win);
         win.setText("<html><body style='width: 750px'>");
-        waterInterval = 10;
         level4Page();
     }
     

@@ -14,7 +14,6 @@ public class Page2 extends Page {
         waterInterval = 15;
         panel.add(win);
         win.setText("<html><body style='width: 750px'>");
-        waterInterval = 25;
         level2Page();
     }
     
@@ -33,7 +32,7 @@ public class Page2 extends Page {
     }
     
     public void level2Page() {
-        actions.add(new LeaderAction("“Don’t worry, be happy” says Putin with regards to Trump’s climate policies.", -30));
+        actions.add(new LeaderAction("'Don’t worry, be happy' says Putin with regards to Trump’s climate policies.", -30));
         actions.add(new LeaderAction("Russia is the fourth largest greenhouse gas polluter.", -30));
         actions.add(new LeaderAction("Discovered in a survey, Russians had the lowest level of concern about global warming out of every country but Ukraine.", -20));
         actions.add(new LeaderAction("President Putin actively contributes to address the issue of global warming.", 20));

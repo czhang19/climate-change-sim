@@ -17,6 +17,7 @@ public abstract class Page{ //superclass for all the pages
     public JButton playButton;
     public JFrame infoFrame;
     public JPanel panel;
+    public JComponent solarPanel;
     public JPanel infoPanel;
     public JLabel header;
     public JLabel win;
@@ -36,11 +37,12 @@ public abstract class Page{ //superclass for all the pages
     public int waterLevel;
     public int waterInterval;
     public JLabel triviaCounter;
-    public int triviaGoal;
-    public int[] xPointsOne = {100, 120, 150, 120}; 
+    public int triviaGoal = 2;
+    public int[] xPointsOne = {110, 130, 160, 130}; 
     public int[] yPointsOne = {90, 10, 5, 110};
-    public int[] xPointsTwo = {10, 80, 90, 5};
-    public int[] yPointsTwo = {110, 120, 140, 130};
+    public int[] xPointsTwo = {15, 100, 120, 5};
+    public int[] yPointsTwo = {110, 100, 120, 135};
+    public Timer panelTimer;
     public Calendar cal;
     public SimpleDateFormat sdf;
     
@@ -56,7 +58,15 @@ public abstract class Page{ //superclass for all the pages
         infoPanel.add(leaderInfo);
         infoPanel.add(playButton);
         infoFrame.add(infoPanel);
-        
+        // solarPanel = new DrawArea();
+        // solarPanel.setSize(150, 150);
+        // solarPanel.setBackground(new Color(0, 0, 0, 0));
+        //solarPanel.setUndecorated(true);
+        // solarPanel.setOpaque(false);
+        // solarPanel.setLayout(null);
+        // solarPanel.repaint();
+
+
         // game page
         waterLevel = 500;
         waterInterval = 20;
@@ -68,13 +78,19 @@ public abstract class Page{ //superclass for all the pages
                 g2.setColor(new Color(25, 150, 200));
                 g2.fillRect(0, waterLevel, 1000, 750-waterLevel);
                 g2.setColor(new Color(250, 215, 66));
-                g2.fillOval(10, 10, 70, 70);
-                g2.setColor(new Color(40, 50, 60));
-                g2.fillPolygon(xPointsOne, yPointsOne, 4);
-                g2.fillPolygon(xPointsTwo, yPointsTwo, 4);
+                g2.fillOval(15, 10, 70, 70);
+                // g2.setColor(new Color(120, 150, 180));
+                // g2.rotate((2*Math.PI) - angle);
+                // g2.fillPolygon(xPointsOne, yPointsOne, 4);
+                // g2.rotate(2*angle);
+                // g2.fillPolygon(xPointsTwo, yPointsTwo, 4);
             }
 
         };
+
+        //panel.setLayout(new GridBagLayout());
+        //c = new GridBagConstraints();
+
         
         // back button to get to home page
         backButton = new JButton("Back");
@@ -188,6 +204,42 @@ public abstract class Page{ //superclass for all the pages
         }
         qCounter = counter;
         System.out.println(qCounter);
+        checkCounter();
+    }
+
+    public void checkCounter(){
+        if (qCounter == triviaGoal){
+            turnPanels();
+        }
+    }
+
+    public void turnPanels(){
+        // double[][] translateFirstArrayOne = {{1, 0, 135}, {0, 1, 50}, {0, 0, 1}};
+        // double[][] rotateArrayOne = {{Math.cos(0.1), -Math.sin(0.1), 0}, {Math.sin(0.1), Math.cos(0.1), 0}, {0, 0, 1}};
+        // double[][] translateSecondArrayOne = {{1, 0, -135}, {0, 1, -50}, {0, 0, 1}};
+        // double[][] pointsOneArray = {xPointsOne, yPointsTwo, {1, 1, 1}};
+        // Matrix rotateOne = new Matrix(rotateArrayOne);
+        // Matrix translateFirstOne = new Matrix(translateFirstArrayOne);
+        // Matrix translateSecondOne = new Matrix(translateSecondArrayOne);
+        // Matrix pointsOne = new Matrix(pointsOneArray);
+        // panelTimer = new Timer(500, new ActionListener(){
+        //     int i = 0;
+        //     @Override
+        //     public void actionPerformed(ActionEvent e){
+                
+        //         xPointsOne = pointsOne.returnRow(1);
+        //         yPointsOne = pointsOne.returnRow(2);
+        //         panel.repaint();
+        //         i++;
+        //         if (i == 5){
+        //             panelTimer.stop();
+        //         }
+
+        //     }
+        // });
+        // panelTimer.start();
+        // win();
+        // //solarPanel.repaint();
     }
 
     public void resetCounter(){
@@ -211,6 +263,9 @@ public abstract class Page{ //superclass for all the pages
 
     public void waterLevelRising(){
         waterLevel -= waterInterval;
+        if (waterLevel % 150 == 0 && waterLevel > 50) {
+            ch4.setEnabled(true);
+        }
         if (waterLevel <= 50) {
             co2.setEnabled(false);
             win();
@@ -223,10 +278,6 @@ public abstract class Page{ //superclass for all the pages
     
     public void waterLevelAction(LeaderAction act) {
         waterLevel += act.x;
-
-        if (waterLevel % 150 == 0 && waterLevel > 50) {
-            ch4.setEnabled(true);
-        }
         if (waterLevel <= 50) {
             co2.setEnabled(false);
             win();
@@ -275,6 +326,23 @@ public abstract class Page{ //superclass for all the pages
                 }
                 updateCounter();
             }
+
         }
-    }   
+    }
+    // public class DrawArea extends JComponent{
+    //     @Override
+    //     public void paintComponent(Graphics g){
+    //         super.paintComponent(g);
+    //         //setOpaque(false);
+    //         System.out.println("marker");
+    //         Graphics2D g2 = (Graphics2D)g;
+    //         g2.setColor(new Color(120, 150, 180));
+    //         g2.rotate((2*Math.PI) - angle);
+    //         g2.fillPolygon(xPointsOne, yPointsOne, 4);
+    //         g2.rotate(2*angle);
+    //         g2.fillPolygon(xPointsTwo, yPointsTwo, 4);
+
+    //     }
+
+
 }

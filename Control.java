@@ -12,15 +12,15 @@ import java.util.Collections;
 
 
 public class Control{ //to navigate between pages
-	public JFrame mainFrame;
-	public Start start;
-	public Home home;
-	public Page level1;
-	public Page level2;
-	public Page level3;
-	public Page level4;
-	public Page level5;
-	public Page tracker;
+    public JFrame mainFrame;
+    public Start start;
+    public Home home;
+    public Page level1;
+    public Page level2;
+    public Page level3;
+    public Page level4;
+    public Page level5;
+    public Page tracker;
     public ArrayList<TriviaQuestion> qbank;
 
 
@@ -35,22 +35,22 @@ public class Control{ //to navigate between pages
         start.startButton.addActionListener(new ButtonClickListener());
         display(start);
         home = new Home();
-    	home.level1Button.addActionListener(new ButtonClickListener());
-    	home.level2Button.addActionListener(new ButtonClickListener());
-    	home.level3Button.addActionListener(new ButtonClickListener());
-    	home.level4Button.addActionListener(new ButtonClickListener());
-    	home.level5Button.addActionListener(new ButtonClickListener());
+        home.level1Button.addActionListener(new ButtonClickListener());
+        home.level2Button.addActionListener(new ButtonClickListener());
+        home.level3Button.addActionListener(new ButtonClickListener());
+        home.level4Button.addActionListener(new ButtonClickListener());
+        home.level5Button.addActionListener(new ButtonClickListener());
         level1 = new Page1();
         level2 = new Page2();
-       	level3 = new Page3();
-       	level4 = new Page4();
-       	level5 = new Page5();
-       	level1.backButton.addActionListener(new ButtonClickListener());
-       	level2.backButton.addActionListener(new ButtonClickListener());
-       	level3.backButton.addActionListener(new ButtonClickListener());
-       	level4.backButton.addActionListener(new ButtonClickListener());
-       	level5.backButton.addActionListener(new ButtonClickListener());
-       	mainFrame.setVisible(true);
+        level3 = new Page3();
+        level4 = new Page4();
+        level5 = new Page5();
+        level1.backButton.addActionListener(new ButtonClickListener());
+        level2.backButton.addActionListener(new ButtonClickListener());
+        level3.backButton.addActionListener(new ButtonClickListener());
+        level4.backButton.addActionListener(new ButtonClickListener());
+        level5.backButton.addActionListener(new ButtonClickListener());
+        mainFrame.setVisible(true);
     
         File f = new File("TriviaBank.txt");
         Scanner input = new Scanner(f); // scans trivia bank
@@ -72,25 +72,27 @@ public class Control{ //to navigate between pages
     
     public static void main(String[] args) 
             throws FileNotFoundException {
-    	Control game = new Control();
-    	
+        Control game = new Control();
+        
     }
 
     public void display(Start start){
-    	mainFrame.add(start.panel);
-    	mainFrame.setVisible(true);
+        mainFrame.add(start.panel);
+        mainFrame.setVisible(true);
     }
 
     public void display(Home home){
         mainFrame.add(home.panel);
         home.panel.revalidate();
         home.panel.repaint();
-    	mainFrame.setVisible(true);
+        mainFrame.setVisible(true);
     }
 
     public void display(Page page){
         page.panel.add(page.timeDisplay);
+        //mainFrame.add(page.solarPanel);
         mainFrame.add(page.panel);
+       // mainFrame.add(page.solarPanel);
         page.panel.revalidate();
         page.panel.repaint();
         page.co2.setEnabled(true);
@@ -104,6 +106,8 @@ public class Control{ //to navigate between pages
     }
 
 
+
+
     public void remove(Page page){  
         page.stopTimer();
         page.closeTrivia();
@@ -111,15 +115,15 @@ public class Control{ //to navigate between pages
         page.resetWater();
         page.resetCounter();
         page.win.setText("<html><body style='width: 750px'>");
-    	mainFrame.remove(page.panel);
+        mainFrame.remove(page.panel);
     }
 
     public void remove(Start start){
-    	mainFrame.remove(start.panel);
+        mainFrame.remove(start.panel);
     }
 
     public void remove(Home home){
-    	mainFrame.remove(home.panel);
+        mainFrame.remove(home.panel);
     }
 
     public class ButtonClickListener implements ActionListener{
@@ -127,16 +131,16 @@ public class Control{ //to navigate between pages
             String command = e.getActionCommand();
 
             if (command.equals("start")){
-            	remove(start);
+                remove(start);
                 display(home);
             }
             else if (command.equals("level1")){
-            	remove(home);
+                remove(home);
                 display(level1);
                 tracker = level1;
             }
             else if (command.equals("level2")){
-            	remove(home);
+                remove(home);
                 display(level2);
                 tracker = level2;
             }
