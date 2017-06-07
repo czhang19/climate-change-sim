@@ -344,6 +344,7 @@ public abstract class Page{ //superclass for all the pages
     
     public void waterLevelAction(LeaderAction act) {
         waterLevel += act.x;
+        buttonSound("Wave.wav");
 
         if (waterLevel <= 50 || waterLevel >= 750) {
             co2.setEnabled(false);

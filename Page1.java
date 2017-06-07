@@ -29,6 +29,7 @@ public class Page1 extends Page {
     
     public void lose() {
         win.setText("<html><body style='width: 750px'>How did you lose to Trump?");
+        win.setFont(new Font("Serif", Font.PLAIN, 30));
         panel.repaint();
     }
     

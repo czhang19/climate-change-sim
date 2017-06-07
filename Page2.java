@@ -31,6 +31,7 @@ public class Page2 extends Page {
     
     public void lose() {
         win.setText("<html><body style='width: 750px'>How did you lose to Putin?");
+        win.setFont(new Font("Serif", Font.PLAIN, 30));
         panel.repaint();
     }
     

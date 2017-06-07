@@ -28,7 +28,8 @@ public class Page5 extends Page {
     }
     
     public void lose() {
-        win.setText("<html><body style='width: 750px'>King Bruck always wins.");
+        win.setText("<html><body style='width: 750px'>~~~~~~~~~King Bruck always wins.~~~~~~~~");
+        win.setFont(new Font("Serif", Font.PLAIN, 50));
         panel.repaint();
     }
     
