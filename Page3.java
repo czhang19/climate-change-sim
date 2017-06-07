@@ -32,7 +32,7 @@ public class Page3 extends Page {
     }
     
     public void win() {
-        win.setText("<html><body style='width: 750px'>Congratulations! You have succeeded in drowning Prime Minister Justin Trudeau in Ottawa, Canada by increasing CO2 levels sufficiently enough to rise sea levels! Click back to return to the home page and attempt Level 4.");
+        win.setText("<html><body style='width: 750px'>Congratulations! You have succeeded in eliminating Prime Minister Justin Trudeau in Ottawa, Canada! Click back to return to the home page and attempt Level 4.");
         panel.repaint();
     }
     
