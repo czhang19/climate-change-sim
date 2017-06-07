@@ -394,7 +394,7 @@ public abstract class Page{ //superclass for all the pages
                 timer.restart();
                 qtimer.restart();
                 atimer.restart();
-                //co2.setEnabled(true);
+                co2.setEnabled(true);
             } 
             else if (command.equals("ch4")){
                 waterLevel -= (3*waterInterval);
