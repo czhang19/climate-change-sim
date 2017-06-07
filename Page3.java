@@ -13,7 +13,7 @@ public class Page3 extends Page {
         setHeader("3: Prime Minister Justin Trudeau");
         panel.add(win);
         win.setText("<html><body style='width: 750px'>");
-        waterInterval = 10;
+        waterInterval = 5;
         level3Page();
     }
     

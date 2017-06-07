@@ -10,10 +10,10 @@ public class Page5 extends Page {
     public Page5() {
         super();
         super.addImage("bruckerrrrr.jpg");
+        waterInterval = 1;
         setHeader("5: King Bruck");
         panel.add(win);
         win.setText("<html><body style='width: 750px'>");
-        waterInterval = 1;
         level5Page();
     }
     

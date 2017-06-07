@@ -13,7 +13,7 @@ public class Page2 extends Page {
         setHeader("2: President Vladimir Putin");
         panel.add(win);
         win.setText("<html><body style='width: 750px'>");
-        waterInterval = 15;
+        waterInterval = 10;
         level2Page();
     }
     

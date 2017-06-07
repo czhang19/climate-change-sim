@@ -13,7 +13,7 @@ public class Page1 extends Page {
         setHeader("1: President Donald Trump");
         panel.add(win);
         win.setText("<html><body style='width: 750px'>");
-        waterInterval = 25;
+        waterInterval = 20;
         level1Page();
     }
     

@@ -16,7 +16,7 @@ public abstract class Page{ //superclass for all the pages
     public JButton backButton;
     public JButton playButton;
     public JFrame infoFrame;
-	public JPanel panel;
+    public JPanel panel;
     public JComponent solarPanel;
     public JPanel infoPanel;
     public JLabel header;
@@ -247,10 +247,10 @@ public abstract class Page{ //superclass for all the pages
     
     public abstract void lose();
     
-	public void setHeader(String s){
-		header = new JLabel("Level " + s, JLabel.CENTER);
-		panel.add(header);
-	}
+    public void setHeader(String s){
+        header = new JLabel("Level " + s, JLabel.CENTER);
+        panel.add(header);
+    }
 
     public void waterLevelRising(){
         waterLevel -= waterInterval;
@@ -304,7 +304,7 @@ public abstract class Page{ //superclass for all the pages
             String command = e.getActionCommand();
             if (command.equals("co2")){
                 waterLevelRising();
-                buttonSound("Honk.wav");
+                buttonSound("Horn.wav");
             }    
             else if (command.equals("play")){
                 infoFrame.dispatchEvent(new WindowEvent(infoFrame, WindowEvent.WINDOW_CLOSING));
@@ -329,6 +329,6 @@ public abstract class Page{ //superclass for all the pages
                 updateCounter();
             }
 
-		}
-	}
+        }
+    }
 }
