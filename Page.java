@@ -316,6 +316,7 @@ public abstract class Page{ //superclass for all the pages
             } 
             else if (command.equals("ch4")){
                 waterLevel -= (3*waterInterval);
+                buttonSound("Cow.wav");
                 ch4.setEnabled(false);
                 panel.repaint();
             } 
