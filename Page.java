@@ -134,7 +134,7 @@ public abstract class Page{ //superclass for all the pages
             }
         });
 
-        // displays the trivia questions every 30 seconds
+        // displays the trivia questions every 7 seconds
         answers = new ArrayList<Boolean>();
         qtimer = new Timer(7000, new ActionListener() {
             int i = 0;

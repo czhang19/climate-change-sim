@@ -39,11 +39,10 @@ public class Start {
         startButton.setPreferredSize(new Dimension(75, 30));
         panel.add(intro);
         panel.add(startButton);
+
         panel.add(spaceBufferTwo);
         panel.add(introduction);
         panel.add(spaceBuffer);
         panel.add(directions);
         }
-
-        
 }
