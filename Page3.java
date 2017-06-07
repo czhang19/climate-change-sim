@@ -15,6 +15,8 @@ public class Page3 extends Page {
         setHeader("3: Prime Minister Justin Trudeau");
         panel.add(win);
         win.setText("<html><body style='width: 750px'>");
+        waterInterval = 15;
+        level3Page();
     }
     
     public void info() {
@@ -32,6 +34,11 @@ public class Page3 extends Page {
     }
     
     public void level3Page() {
-    
+        actions.add(new LeaderAction("Justin Trudeau reaffirms his commitment to the Paris Accord!", 40));
+        actions.add(new LeaderAction("Justin Trudeau speaks in support of the Keystone Pipeline.", -20));
+        actions.add(new LeaderAction("Justin Trudeau endowed the Low Carbon Economy Trust with $2 billion.", 40));
+        actions.add(new LeaderAction("Justin Trudeau fulfilled the G20 commitment and phased out subsidies for the fossil fuel industry over the medium-term.", 40));
+        actions.add(new LeaderAction("Justin Trudeau supports tar sands drilling.", -40));
+        actions.add(new LeaderAction("Canada pledges in Paris to cut greenhouse gas emissions 30 percent from 2005 levels by 2030.", 50));
     }
 }

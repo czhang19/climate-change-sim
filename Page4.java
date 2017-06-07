@@ -14,6 +14,8 @@ public class Page4 extends Page {
         waterInterval = 5;
         panel.add(win);
         win.setText("<html><body style='width: 750px'>");
+        waterInterval = 10;
+        level4Page();
     }
     
     public void info() {
@@ -31,6 +33,11 @@ public class Page4 extends Page {
     }
     
     public void level4Page() {
-    
+        actions.add(new LeaderAction("Angela Merkel speaks out in favor of climate science!", 40));
+        actions.add(new LeaderAction("Angela Merkel defends 'essential' Paris Agreement on climate change.", 40));
+        actions.add(new LeaderAction("Angela Merkel pledges money to the Green Climate Fund!", 40));
+        actions.add(new LeaderAction("Angela Merkel pledges Germany to cut greenhouse gas emissions 80% by 2050.", 40));
+        actions.add(new LeaderAction("Angela Merkel creates hundreds of thousands of new jobs in the energy sector!", 40));
+        actions.add(new LeaderAction("Angela Merkel says it was ‘right’ to confront Donald Trump over climate change.", 40));
     }
 }

@@ -27,6 +27,7 @@ public class Control{ //to navigate between pages
     public Control() 
             throws FileNotFoundException {
         mainFrame = new JFrame("Flood");
+        mainFrame.setResizable(false);
         mainFrame.setSize(1000, 750);
         mainFrame.setLocationRelativeTo(null);
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -99,13 +100,16 @@ public class Control{ //to navigate between pages
         //page.ch4.setEnabled(true);
         mainFrame.setVisible(true);
         page.info();
+        Collections.shuffle(page.actions);
         Collections.shuffle(qbank);
         page.bank = qbank;
     }
 
 
 
-    public void remove(Page page){
+
+    public void remove(Page page){  
+        page.stopTimer();
         page.closeTrivia();
         page.closeInfo();
         page.resetWater();
