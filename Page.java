@@ -303,7 +303,8 @@ public abstract class Page{ //superclass for all the pages
             String command = e.getActionCommand();
             if (command.equals("co2")){
                 waterLevelRising();
-                buttonSound("Honk.wav");
+             //   buttonSound("Honk.wav");
+                buttonSound("Water.wav");
             }    
             else if (command.equals("play")){
                 infoFrame.dispatchEvent(new WindowEvent(infoFrame, WindowEvent.WINDOW_CLOSING));
@@ -329,6 +330,9 @@ public abstract class Page{ //superclass for all the pages
 
         }
     }
+}
+	
+
     // public class DrawArea extends JComponent{
     //     @Override
     //     public void paintComponent(Graphics g){
@@ -345,4 +349,3 @@ public abstract class Page{ //superclass for all the pages
     //     }
 
 
-}
