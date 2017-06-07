@@ -26,8 +26,13 @@ public class Page1 extends Page {
         infoFrame.setLocationRelativeTo(null);
     }
     
+    public void lose() {
+        win.setText("<html><body style='width: 750px'>How did you lose to Trump?");
+        panel.repaint();
+    }
+    
     public void win() {
-        win.setText("<html><body style='width: 750px'>Congratulations! You have succeeded in drowning President Donald Trump by increasing CO2 levels sufficiently enough to rise sea levels and reach his Mar-a-Lago resort! Click back to return to the home page and attempt Level 2.");
+        win.setText("<html><body style='width: 750px'>Congratulations! You have succeeded in eliminating President Donald Trump at the Mar-a-Lago resort! Click back to return to the home page and attempt Level 2.");
         panel.repaint();
     }
     

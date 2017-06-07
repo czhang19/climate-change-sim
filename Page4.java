@@ -11,9 +11,9 @@ public class Page4 extends Page {
         super();
         super.addImage("merkelllll.jpg");
         setHeader("4: Chancellor Angela Merkel");
-        waterInterval = 5;
         panel.add(win);
         win.setText("<html><body style='width: 750px'>");
+        waterInterval = 3;
         level4Page();
     }
     
@@ -26,8 +26,13 @@ public class Page4 extends Page {
         infoFrame.setLocationRelativeTo(null);
     }
     
+    public void lose() {
+        win.setText("<html><body style='width: 750px'>You lost.");
+        panel.repaint();
+    }
+    
     public void win() {
-        win.setText("<html><body style='width: 750px'>Congratulations! You have succeeded in drowning Chancellor Angela Merkel in Berlin, Germany by increasing CO2 levels sufficiently enough to rise sea levels! Click back to return to the home page and attempt Level 5.");
+        win.setText("<html><body style='width: 750px'>Congratulations! You have succeeded in eliminating Chancellor Angela Merkel in Berlin, Germany! Click back to return to the home page and attempt Level 5.");
         panel.repaint();
     }
     

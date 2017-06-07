@@ -29,6 +29,7 @@ public abstract class Page{ //superclass for all the pages
     public GridBagConstraints c;
     public ArrayList<TriviaQuestion> bank;
     public int displayed = 0;
+    public int displayedAction = 0;
     public ArrayList<Boolean> answers;
     public ArrayList<LeaderAction> actions;
     public int qCounter = 0;
@@ -58,14 +59,6 @@ public abstract class Page{ //superclass for all the pages
         infoPanel.add(leaderInfo);
         infoPanel.add(playButton);
         infoFrame.add(infoPanel);
-        // solarPanel = new DrawArea();
-        // solarPanel.setSize(150, 150);
-        // solarPanel.setBackground(new Color(0, 0, 0, 0));
-        //solarPanel.setUndecorated(true);
-        // solarPanel.setOpaque(false);
-        // solarPanel.setLayout(null);
-        // solarPanel.repaint();
-
 
         // game page
         waterLevel = 500;
@@ -79,18 +72,9 @@ public abstract class Page{ //superclass for all the pages
                 g2.fillRect(0, waterLevel, 1000, 750-waterLevel);
                 g2.setColor(new Color(250, 215, 66));
                 g2.fillOval(15, 10, 70, 70);
-                // g2.setColor(new Color(120, 150, 180));
-                // g2.rotate((2*Math.PI) - angle);
-                // g2.fillPolygon(xPointsOne, yPointsOne, 4);
-                // g2.rotate(2*angle);
-                // g2.fillPolygon(xPointsTwo, yPointsTwo, 4);
             }
 
         };
-
-        //panel.setLayout(new GridBagLayout());
-        //c = new GridBagConstraints();
-
         
         // back button to get to home page
         backButton = new JButton("Back");
@@ -129,6 +113,7 @@ public abstract class Page{ //superclass for all the pages
             @Override
             public void actionPerformed(ActionEvent e) {
                 actions.get(i).display();
+                displayedAction = i;
                 waterLevelAction(actions.get(i));
                 if (i == actions.size() - 1) {
                     i = 0;
@@ -140,7 +125,7 @@ public abstract class Page{ //superclass for all the pages
 
         // displays the trivia questions every 30 seconds
         answers = new ArrayList<Boolean>();
-        qtimer = new Timer(10000, new ActionListener() {
+        qtimer = new Timer(12000, new ActionListener() {
             int i = 0;
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -193,6 +178,10 @@ public abstract class Page{ //superclass for all the pages
         for (int i = 0; i < displayed; i++){
             bank.get(i).close();
         }
+    }
+    
+    public void closeLevelAction() {
+        actions.get(displayedAction).close();
     }
 
     public void updateCounter(){
@@ -256,6 +245,8 @@ public abstract class Page{ //superclass for all the pages
 
     public abstract void win();
     
+    public abstract void lose();
+    
     public void setHeader(String s){
         header = new JLabel("Level " + s, JLabel.CENTER);
         panel.add(header);
@@ -265,10 +256,13 @@ public abstract class Page{ //superclass for all the pages
         waterLevel -= waterInterval;
         if (waterLevel % 150 == 0 && waterLevel > 50) {
             ch4.setEnabled(true);
-        }
+        } 
+        
         if (waterLevel <= 50) {
             co2.setEnabled(false);
             win();
+            closeTrivia();
+            closeLevelAction();
             timer.stop();
             qtimer.stop();
             atimer.stop();
@@ -278,9 +272,16 @@ public abstract class Page{ //superclass for all the pages
     
     public void waterLevelAction(LeaderAction act) {
         waterLevel += act.x;
-        if (waterLevel <= 50) {
+
+        if (waterLevel <= 50 || waterLevel >= 750) {
             co2.setEnabled(false);
-            win();
+            if (waterLevel <= 50) {
+                win();
+            } else {
+                lose();
+            }
+            closeTrivia();
+            closeLevelAction();
             timer.stop();
             qtimer.stop();
             atimer.stop();
@@ -303,8 +304,7 @@ public abstract class Page{ //superclass for all the pages
             String command = e.getActionCommand();
             if (command.equals("co2")){
                 waterLevelRising();
-             //   buttonSound("Honk.wav");
-                buttonSound("Water.wav");
+                buttonSound("Honk.wav");
             }    
             else if (command.equals("play")){
                 infoFrame.dispatchEvent(new WindowEvent(infoFrame, WindowEvent.WINDOW_CLOSING));
@@ -331,21 +331,3 @@ public abstract class Page{ //superclass for all the pages
         }
     }
 }
-	
-
-    // public class DrawArea extends JComponent{
-    //     @Override
-    //     public void paintComponent(Graphics g){
-    //         super.paintComponent(g);
-    //         //setOpaque(false);
-    //         System.out.println("marker");
-    //         Graphics2D g2 = (Graphics2D)g;
-    //         g2.setColor(new Color(120, 150, 180));
-    //         g2.rotate((2*Math.PI) - angle);
-    //         g2.fillPolygon(xPointsOne, yPointsOne, 4);
-    //         g2.rotate(2*angle);
-    //         g2.fillPolygon(xPointsTwo, yPointsTwo, 4);
-
-    //     }
-
-
