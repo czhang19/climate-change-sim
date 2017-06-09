@@ -378,6 +378,8 @@ public abstract class Page{ //superclass for all the pages
 
     public void resetWater(){
         waterLevel = 500;
+        ch4.setEnabled(false);
+        co2.setEnabled(false);
     }
     
     public class ButtonClickListener implements ActionListener{
