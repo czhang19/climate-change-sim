@@ -43,7 +43,7 @@ public class Page5 extends Page {
         actions.add(new LeaderAction("Dr. Brucker plants 500 trees!", 50));
         actions.add(new LeaderAction("Dr. Brucker convinces all of California to drive electric cars!", 100));
         actions.add(new LeaderAction("Dr. Brucker writes a new PEEB!", 20));
-        actions.add(new LeaderAction("Dr. Brucker emits SO2 into the atmosphere!", -10));
+        actions.add(new LeaderAction("Dr. Brucker emits SO2 into the atmosphere!", 10));
         actions.add(new LeaderAction("Dr. Brucker shuts down all coal factories in the US!", 100));
         actions.add(new LeaderAction("Dr. Brucker sends solar panels into orbit.", 40));
         actions.add(new LeaderAction("Dr. Brucker bans all gas-guzzling vehicles for a week in the US!", 100));
