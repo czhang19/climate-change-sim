@@ -1,4 +1,4 @@
-﻿CO2 is a greenhouse gas =T=
+CO2 is a greenhouse gas =T=
 CH4 is not a greenhouse gas =F=
 Geoengineering is the large-scale manipulation of the environment to reverse climate change =T=
 Global warming is caused by decreased solar radiation reaching the earth and increased radiation being reflected back out into space =F=
@@ -21,7 +21,7 @@ Carbon dioxide is a more active greenhouse gas than methane =F=
 Chlorofluorocarbons are naturally occurring gases =F=
 The United States contributes to less than 20% of the world's carbon emission =F=
 Global warming can affect extreme weather, such as hurricanes =T=
-"Clean energ" sources do not use fossil fuels. Oil is an example of this. =F=
+"Clean energy" sources do not use fossil fuels. Oil is an example of this. =F=
 The frozen ground in the Arctic contains greenhouse gases, which can be released when it melts =T=
 The pre-industrial concentration of carbon dioxide in the atmosphere was 280 parts per million =T=
 The amount of carbon dioxide is higher than at any time in the last 800,000 years =T=
